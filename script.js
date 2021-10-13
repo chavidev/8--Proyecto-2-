@@ -6,7 +6,7 @@
 let partidos = document.querySelector("tbody");
 //let partidos = document.getElementById("tabla");
 
-let partido
+let partido  
 let local
 let resultado
 let visitante
