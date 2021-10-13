@@ -1,47 +1,40 @@
+//let ensayo = document.
+
 // https://codepen.io/susanwinters/pen/YpRMdg
 //let partidos = document.createElement("tbody");
-let partidos = document.createElement("h1"); 
+//let partidos = document.createElement("tr"); 
+let partidos = document.querySelector("tbody");
+//let partidos = document.getElementById("tabla");
 
+let partido
+let local
+let resultado
+let visitante
 
-//let tabla = document.getElementById("tabla");
-let creandoTabla = "";
 let jornada = "";
 let equipoLocal = "";
 let equipoVisitante = "";
-let resultado = "";
- 
- 
 
-//console.log(data.matches)
- 
-
-//document.write(`Local: ${data.matches[0].homeTeam.name} ${data.matches[0].score.fullTime.homeTeam}   -   ${data.matches[0].score.fullTime.awayTeam} Visitante: ${data.matches[0].awayTeam.name}`)
-//console.log(data.lenght)
-console.log(data.matches.length)
 for (i=0 ; i<data.matches.length ; i++ ){
-  // ésto en principio no hace falta
   jornada = data.matches[i].matchday;
   equipoLocal = data.matches[i].homeTeam.name;
   equipoVisitante = data.matches[i].awayTeam.name;
   puntosLocal = data.matches[i].score.fullTime.homeTeam;
   puntosVisitante = data.matches[i].score.fullTime.awayTeam
- 
-  //creandoTabla += jornada + "Local:" + equipoLocal + puntosLocal + "-"+   puntosVisitante + "Visitante:" + equipoVisitante +  "<br>";
   
-  //creandoTabla +=`${data.matches[i].matchday} Local: ${data.matches[i].homeTeam.name} ${data.matches[i].score.fullTime.homeTeam}   -   ${data.matches[i].score.fullTime.awayTeam} Visitante: ${data.matches[i].awayTeam.name} \n <br>`
-  /* creandoTabla+=`<tr>
-  <td>${data.matches[i].homeTeam.name}</td>
-  <td>${data.matches[i].score.fullTime.homeTeam}   -   ${data.matches[i].score.fullTime.awayTeam}</td>
-  <td>${data.matches[i].awayTeam.name}</td>
-  </tr>`
-  */
-  creandoTabla += "<tr><td>local</td>  <td>resultado</td>  <td>visitante</td>  </tr>"
+  partido = document.createElement("tr"); 
+  local = document.createElement("td");
+  resultado = document.createElement("td");
+  visitante = document.createElement("td");
+  local.innerText = equipoLocal.toString();
+  //resultado.innerText = "0-0";//
+  visitante.innerText = equipoVisitante.toString() ;
+
+  partido.append(local);//colocar el resto con comas resul y visitante
 }
  
-//tabla.innerHTML = creandoTabla;
+partidos.innerText = partido
 
-//document.tbody.appendChild(div)
-//partidos.innerHTML = creandoTabla;
-//document.tbody.append(div)
+//partidos.innerHTML = "hola colega"
 
-partidos.append(creandoTabla);
+console.log(partido)
