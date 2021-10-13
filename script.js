@@ -26,14 +26,15 @@ for (i=0 ; i<data.matches.length ; i++ ){
   local = document.createElement("td");
   resultado = document.createElement("td");
   visitante = document.createElement("td");
-  local.innerText = equipoLocal.toString();
-  //resultado.innerText = "0-0";//
-  visitante.innerText = equipoVisitante.toString() ;
+  local.innerText = equipoLocal;
+  resultado.innerText = "0-0"; //pendiente de colocar correctamente
+  visitante.innerText = equipoVisitante ;
 
-  partido.append(local);//colocar el resto con comas resul y visitante
+  partido.append(local , resultado, visitante);//colocar el resto con comas resul y visitante
+  partidos.append(partido);
 }
- 
-partidos.innerText = partido
+
+
 
 //partidos.innerHTML = "hola colega"
 
