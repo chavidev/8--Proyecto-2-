@@ -25,7 +25,39 @@ function verClasificacion(){
 }
 
 function inyectarTd(arrayTd){  
-  //let clasificacion = document.querySelector("tbody");
+  let clasificacion = document.querySelector("tbody");
+  let trClasificacion = document.createElement("tr");
+  let tdPosicion = document.createElement("td");
+  let tdTeamName = document.createElement("td");
+  let tdTeamId = document.createElement("td");
+  let tdTeamLogo = document.createElement("td");
+  let tdPartidosJugados =document.createElement("td");
+  let tdVictorias = document.createElement("td");
+  let tdEmpates = document.createElement("td");
+  let tdDerrotas = document.createElement("td");
+  let tdGolesFaborables = document.createElement("td");
+  let tdGolesContra = document.createElement("td");
+  let tdGolesDiferencia = document.createElement("td");
+  let tdPuntos  = document.createElement("td");
+  
+  
+  tdPosicion.innerText = arrayTd.posicion;
+  tdTeamName.innerText = arrayTd.teamName;
+  tdTeamId.innerText = arrayTd.teamId;
+  tdTeamLogo.innerText = arrayTd.teamLogo;
+  tdPartidosJugados.innerText = arrayTd.partidosJugados;
+  tdVictorias.innerText = arrayTd.victorias ;
+  tdEmpates.innerText = arrayTd.empates;
+  tdDerrotas.innerText = arrayTd.derrotas;
+  tdGolesFaborables.innerText = arrayTd.aborables;
+  tdGolesContra.innerText = arrayTd.golesContra;
+  tdGolesDiferencia.innerText = arrayTd.golesDiferencia;
+  tdPuntos.innerText = arrayTd.puntos;
+  
+
+  trClasificacion.append(tdPosicion,tdTeamName,tdTeamId,tdTeamLogo,tdPartidosJugados,tdVictorias,tdEmpates,tdDerrotas,tdGolesFaborables,tdGolesContra,tdGolesDiferencia,tdPuntos)
+  clasificacion.append(trClasificacion);
+  
   console.log(arrayTd)
 
 }
