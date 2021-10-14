@@ -1,3 +1,4 @@
 console.log("clasificación");
-console.log(dataClasificacion);
-document.write(`dataClasificacion.standings`)
+let variable1 = `${dataClasificacion.standings}`;
+console.log(variable1);
+document.write(`${variable1}`);
