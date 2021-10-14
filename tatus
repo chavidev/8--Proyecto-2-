@@ -7,3 +7,25 @@
 [31m|[m * [33m0f3fb81[m vuelta a empezar con las tarjetas
 [31m|[m[31m/[m  
 * [33m425245d[m[33m ([m[1;31morigin/tarjetas_por_jornada[m[33m, [m[1;32mtarjetas_por_jornada[m[33m)[m _
+* [33mca76d30[m[33m ([m[1;36mHEAD -> [m[1;32mdev5[m[33m)[m coreccion del profe de partidos y inserción/estructura  de clasificación
+[31m|[m * [33mb9254f2[m[33m ([m[1;31morigin/dev5[m[33m)[m coreccion del profe de partidos y inserción/estructura  de clasificación
+[31m|[m[31m/[m  
+* [33ma21f1bd[m inicio clasificación a partir de insex-artidos
+* [33m5182335[m _
+*   [33m6f7bcdc[m[33m ([m[1;32mdev[m[33m)[m Merge branch 'dev3' into dev
+[33m|[m[34m\[m  
+[33m|[m [34m|[m * [33m421407e[m[33m ([m[1;31morigin/dev[m[33m)[m Merge pull request #2 from chavidev/dev3
+[33m|[m [34m|[m[33m/[m[34m|[m 
+[33m|[m[33m/[m[34m|[m[34m/[m  
+[33m|[m * [33m81dd2e1[m[33m ([m[1;31morigin/dev3[m[33m, [m[1;32mdev3[m[33m)[m partidos terminado a falta de corrección
+* [33mca76d30[m[33m ([m[1;36mHEAD -> [m[1;32mdev5[m[33m)[m coreccion del profe de partidos y inserción/estructura  de clasificación
+[31m|[m * [33mb9254f2[m[33m ([m[1;31morigin/dev5[m[33m)[m coreccion del profe de partidos y inserción/estructura  de clasificación
+[31m|[m[31m/[m  
+* [33ma21f1bd[m inicio clasificación a partir de insex-artidos
+* [33m5182335[m _
+*   [33m6f7bcdc[m[33m ([m[1;32mdev[m[33m)[m Merge branch 'dev3' into dev
+[33m|[m[34m\[m  
+[33m|[m [34m|[m * [33m421407e[m[33m ([m[1;31morigin/dev[m[33m)[m Merge pull request #2 from chavidev/dev3
+[33m|[m [34m|[m[33m/[m[34m|[m 
+[33m|[m[33m/[m[34m|[m[34m/[m  
+[33m|[m * [33m81dd2e1[m[33m ([m[1;31morigin/dev3[m[33m, [m[1;32mdev3[m[33m)[m partidos terminado a falta de corrección
