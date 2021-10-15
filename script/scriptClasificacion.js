@@ -1,8 +1,3 @@
-//console.log("clasificación");
-//let variable1 = JSON.stringify(dataClasificacion.standings[0].table[2].position);
-//console.log(variable1);
-//document.write(`${variable1}`);
- 
 verClasificacion()
  
 function verClasificacion(){
@@ -22,7 +17,6 @@ function verClasificacion(){
     teamId = dataClasificacion.standings[0].table[i].team.id; //¿no lo uso?
    
     // teamId    en principio no lo voy a usar
-    //arrayTd = {posicion , teamName ,teamLogo , teamLogo , partidosJugados , victorias , empates , derrotas , golesFaborables , golesContra , golesDiferencia , puntos};
     arrayTd = [posicion , teamLogo , teamName  , partidosJugados , victorias , empates , derrotas , golesFaborables , golesContra , golesDiferencia , puntos];
     inyectarTd(arrayTd);
   }
@@ -33,7 +27,7 @@ function inyectarTd(arrayTd){
   let trClasificacion = document.createElement("tr");
   let tdFor
   for(let i=0;i<arrayTd.length;i++){
-   
+
       tdFor = document.createElement("td");
       if(i==1) {
         let img = document.createElement("img");
@@ -44,10 +38,8 @@ function inyectarTd(arrayTd){
       else {
         tdFor.innerText = arrayTd[i];
       }
-   
- 
+
     trClasificacion.append(tdFor)
-    clasificacion.append(trClasificacion);
-   
+    clasificacion.append(trClasificacion);   
   }
 }
