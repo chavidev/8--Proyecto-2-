@@ -20,10 +20,35 @@ https://getbootstrap.com/docs/5.1/getting-started/download/
 
 
 tareas: 
-*que la parte superior de la tabla no suba cuando haga scroll
-
 centrar la nav
 
 cuando se hace mas pequeño ¿pendiente?
 
 calcular 5 últimos
+
+
+
+*que la parte superior de la tabla no suba cuando haga scroll
+y quede en la parte superior he inferior (dos veces)
+https://www.google.com/search?q=bootstrap+max+height+scroll&newwindow=1&rlz=1C1CHBD_esES898ES898&sxsrf=AOaemvK0yyKvUqJjm3hWXq09QqNV0bOSrA%3A1634305744095&ei=0IZpYcqcBYqca-r-kogP&oq=bootstrap+max+height+scroll&gs_lcp=Cgdnd3Mtd2l6EAEYBjIECCMQJzIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQywEyBQgAEIAEMgUIABDLATIFCAAQgAQyBQgAEMsBMgUIABCABDoHCAAQRxCwAzoGCAAQFhAeOggIABAWEAoQHjoHCAAQChDLAUoECEEYAFD4XljqnwFg7OcBaAFwAngAgAGWAYgB8wOSAQMwLjSYAQCgAQHIAQjAAQE&sclient=gws-wiz
+https://www.google.com/search?q=thead+fixed+tbody+scroll&rlz=1C1CHBD_esES898ES898&oq=thead+fix&aqs=chrome.1.69i57j0i67j0i512l3j0i22i30l5.20556j0j1&sourceid=chrome&ie=UTF-8
+
+https://codepen.io/javiercastaneda303/pen/dyzGPpx interesante pero quiero que se mantenga al subir
+https://embed.plnkr.co/k7ipmtXkpL0MDT9KGZbc/
+
+
+
+
+solución: https://codepen.io/rafahell/pen/PzLzQa
+https://www.google.com/search?q=header+fixed+on+scroll+jquery+smooth+codepen&newwindow=1&rlz=1C1CHBD_esES898ES898&sxsrf=AOaemvInNlrPPx38o9FCqq7sJSrru3bgFg%3A1634307024551&ei=0ItpYbaTIeGUlwSb_avADg&oq=header+fixed+on+scroll+jquery+smooth+codepen&gs_lcp=Cgdnd3Mtd2l6EAMYADIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIICAAQCBAHEB4yCAgAEAgQBxAeMggIABAIEAcQHjIICAAQCBAHEB4yCAgAEAgQBxAeMggIABAIEAcQHjIICAAQCBAHEB46BAgAEENKBAhBGABQ5bUCWMboAmCYigNoAXACeACAAYEBiAGsBZIBAzAuNpgBAKABAcABAQ&sclient=gws-wiz
+
+
+¿explicación o ruido?https://www.it-swarm-es.com/es/css/como-hacer-una-tabla-de-encabezado-fija-dentro-de-div-desplazable/1040956008/
+
+
+efecto wapo https://codepen.io/syedrafeeq/pen/sDnKg
+
+quiero ésto:
+https://codepen.io/JGallardo/pen/lJoyk
+https://codepen.io/kudel/pen/woKePB
+https://www.google.com/search?q=header+fixed+on+scroll+smooth+codepen&newwindow=1&rlz=1C1CHBD_esES898ES898&sxsrf=AOaemvLgBJxQCvcduyoRAtrMbUm1BNm6Kg%3A1634307076041&ei=BIxpYZ6DAoafUK_8nbAD&ved=0ahUKEwieleKlzMzzAhWGDxQKHS9-BzYQ4dUDCA4&uact=5&oq=header+fixed+on+scroll+smooth+codepen&gs_lcp=Cgdnd3Mtd2l6EAMyBggAEAcQHjoHCAAQRxCwAzoHCCMQsAIQJ0oECEEYAFCi0QhY9OoIYOn0CGgBcAJ4AIABuAGIAbEHkgEDMC43mAEAoAEByAEIwAEB&sclient=gws-wiz
