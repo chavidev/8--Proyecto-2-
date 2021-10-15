@@ -7,16 +7,3 @@
   color: whitesmoke;
 }
 
-table {
-  border: 2px solid greenyellow;
-  width: 50%;
-  margin: auto;
-}
-thead {
-  border: 2px solid blueviolet;
-  background-color: chocolate;
-}
-td {
-  text-align: center;
-}
-
