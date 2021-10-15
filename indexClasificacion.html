@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="./style/styleClasificacion.css">
   <title>Clasificación</title>
 </head>
-<body class="container ">
+<!-- el header se lo debería inyectar con javaScript desde un núnico sitio/conponente (imitando un componente) -->
+<body class="container">
   <header>    
     <!-- quiero centrarlo pero no puedo -->
     <nav class="navbar  fixed-top navbar-expand-lg navbar-dark bg-primary">
@@ -17,8 +18,8 @@
       <a class="navbar-brand" href="./indexPartidos.html">Partidos</a>
     </nav>
   </header>
-  <main>
-    <table class="table table-dark mt-5">
+  <main class="mt-5 pt-5">
+    <table class="table table-dark ">
     <thead>
         <tr>
           <th colspan="3">Club</th>
@@ -46,11 +47,6 @@
         </tr> -->
     </tbody>
   </table>
-  <div id="tabla">
-  </div>
-  <h1>
-
-  </h1>
   </main>
   <script src="./dataClasificacion.js"></script>
   <script src="./script/scriptClasificacion.js"></script>

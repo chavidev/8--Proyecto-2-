@@ -16,3 +16,14 @@ las noticias pueden salir de aquí, y los videos de los partidos
 https://www.google.com/search?q=clasificaci%C3%B3n+de+primera+divisi%C3%B3n&rlz=1C1CHBD_esES898ES898&oq=clasificaci%C3%B3n+&aqs=chrome.4.69i57j0i433i512j0i512j0i433i512j0i512j0i131i433i512j0i433i512j69i61.16399j0j1&sourceid=chrome&ie=UTF-8#sie=lg;/g/11mqlmppsd;2;/m/09gqx;nw;fp;1;;
  
 https://getbootstrap.com/docs/5.1/getting-started/download/
+
+
+
+tareas: 
+*que la parte superior de la tabla no suba cuando haga scroll
+
+centrar la nav
+
+cuando se hace mas pequeño ¿pendiente?
+
+calcular 5 últimos
