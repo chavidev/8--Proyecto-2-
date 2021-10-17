@@ -6,4 +6,12 @@
   background-color: rgb(214, 114, 169);
   color: whitesmoke;
 }
-
+.cabezera-fixed {
+  position: sticky;
+  top: 8.5%;
+  color: #292b2c;
+  background: url('https://images.pexels.com/photos/2570139/pexels-photo-2570139.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+}
+.thead-dark {
+color: #292b2c;
+}

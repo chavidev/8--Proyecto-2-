@@ -12,7 +12,7 @@ function verPartidos (){
     golesLocal = data.matches[i].score.fullTime.homeTeam;
     golesVisitante = data.matches[i].score.fullTime.awayTeam
     
-    partido = document.createElement("tr"); 
+    partido = document.createElement("tr");
     local = document.createElement("td");
     imgLocal = document.createElement("td");
     resultado = document.createElement("td");
@@ -22,7 +22,7 @@ function verPartidos (){
     local.innerText = equipoLocal;
     local.setAttribute("class","text-end");
     /* resultado.innerText = `${golesLocal} - ${golesVisitante}`;  */
-    resultado.innerText = ((golesLocal||golesVisitante) == null)? "pendiente":`${golesLocal} - ${golesVisitante}`; 
+    resultado.innerText = ((golesLocal||golesVisitante) == null)? "pendiente":`${golesLocal} - ${golesVisitante}`;
     resultado.setAttribute("class","text-center");
     visitante.innerText = equipoVisitante ;
     visitante.setAttribute("class","text-start");
@@ -42,3 +42,21 @@ function imgEquipo (imgTd , id) {
   imgTd.append(imgLogo);
   imgTd.setAttribute("width","50px")
 }
+ 
+// start cabecera-sticky 
+function fijarCabezera ()  {
+  const cabezeras = document.querySelectorAll('.cabezera')
+  cabezeras.forEach(cab => { cab.classList.add('cabezera-fixed') })
+}
+ 
+function desfijarCabezera () {
+  const cabezeras = document.querySelectorAll('.cabezera')
+  cabezeras.forEach(cab => { cab.classList.remove('cabezera-fixed') })
+}
+ 
+window.addEventListener('scroll', function(e) {
+  console.log(window.scrollY)
+  if(window.scrollY >= 40) fijarCabezera()
+  else desfijarCabezera()
+});
+// end cabecera
