@@ -10,7 +10,11 @@
   position: sticky;
   top: 8.5%;
   color: #292b2c;
-  background: url('https://images.pexels.com/photos/2570139/pexels-photo-2570139.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+  /*background: url('https://images.pexels.com/photos/2570139/pexels-photo-2570139.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');*/
+  background: url('../img/blanco-fondo.jpg'); /*solución fondo transparente */
+  /* no me hace caso ¿por qué? */
+  /* border: 3px solid #292b2c ; */
+  /* padding-top: 300px; */
 }
 .thead-dark {
 color: #292b2c;

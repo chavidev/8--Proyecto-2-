@@ -54,8 +54,18 @@ https://codepen.io/kudel/pen/woKePB
 https://www.google.com/search?q=header+fixed+on+scroll+smooth+codepen&newwindow=1&rlz=1C1CHBD_esES898ES898&sxsrf=AOaemvLgBJxQCvcduyoRAtrMbUm1BNm6Kg%3A1634307076041&ei=BIxpYZ6DAoafUK_8nbAD&ved=0ahUKEwieleKlzMzzAhWGDxQKHS9-BzYQ4dUDCA4&uact=5&oq=header+fixed+on+scroll+smooth+codepen&gs_lcp=Cgdnd3Mtd2l6EAMyBggAEAcQHjoHCAAQRxCwAzoHCCMQsAIQJ0oECEEYAFCi0QhY9OoIYOn0CGgBcAJ4AIABuAGIAbEHkgEDMC43mAEAoAEByAEIwAEB&sclient=gws-wiz
 
 
+modelo útil 
+https://codepen.io/JGallardo/pen/lJoyk
 
+
+colores boostrap https://colorswall.com/palette/3
+https://getbootstrap.com/docs/5.0/utilities/text/
+https://getbootstrap.com/docs/5.0/utilities/text/
+
+***sácalo Javi esto estará wapo**********
 multiples etiquetas ¿con el número de jornada?
 https://css-tricks.com/position-sticky-and-table-headers/
 
-colores boostrap https://colorswall.com/palette/3
+
+modelo wapo de menús
+https://www.youtube.com/watch?v=TSApIGTyzos&list=PLNAhb_3cvPKutAVEngn4nmXzgead9OKOm&index=6

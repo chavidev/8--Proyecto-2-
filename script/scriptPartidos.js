@@ -43,20 +43,27 @@ function imgEquipo (imgTd , id) {
   imgTd.setAttribute("width","50px")
 }
  
-// start cabecera-sticky 
+// start cabecera-sticky
+// me hace fondo transparente y lo soluciono con una imágen de fondo
+//no consigo hacer el código mio, no me funciona eliminar la clase cuando lo tuneo
 function fijarCabezera ()  {
-  const cabezeras = document.querySelectorAll('.cabezera')
-  cabezeras.forEach(cab => { cab.classList.add('cabezera-fixed') })
+  let cabezeras = document.querySelectorAll('.cabezera')
+  cabezeras.forEach(cab => { cab.classList.add('cabezera-fixed') }) //modificación a mi estilo ¿perfect?
+  //cabezeras.forEach( function (cab) { cab.setAttribute('class','cabezera-fixed') })
 }
  
 function desfijarCabezera () {
-  const cabezeras = document.querySelectorAll('.cabezera')
+  let cabezeras = document.querySelectorAll('.cabezera')
   cabezeras.forEach(cab => { cab.classList.remove('cabezera-fixed') })
+  //cabezeras.forEach(function (cab) { cab.removeAttribute("class") })
 }
  
 window.addEventListener('scroll', function(e) {
   console.log(window.scrollY)
-  if(window.scrollY >= 40) fijarCabezera()
-  else desfijarCabezera()
+  if(window.scrollY >= 40) {
+    fijarCabezera()
+  } else {
+    desfijarCabezera()
+  }
 });
 // end cabecera
