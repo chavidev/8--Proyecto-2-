@@ -3,6 +3,7 @@
   id:
   nombre:
   totalGolesMarcados:
+  partidosJugados:
   golesRecibidosFuera:
   avg:
 }
@@ -10,7 +11,8 @@
 let arrayGoles = [];
 
 contarGoles ();
-console.log(arrayGoles)
+calcularAvg ();
+//console.log(arrayGoles)
 
 function contarGoles (){  
   for(let i=0 ; i<data.matches.length ;i++){
@@ -22,34 +24,53 @@ function contarGoles (){
     idEquipoVisitante = data.matches[i].awayTeam.id;
     golesLocal = data.matches[i].score.fullTime.homeTeam;
     golesVisitante = data.matches[i].score.fullTime.awayTeam  
-    /* 
-    console.log(`
-      jornada=${jornada}
-      equipoLocal=${equipoLocal}
-      golesLocal=${golesLocal}         
-    `)
-     */
+    
     if(golesLocal === null){
-      console.log("Ups con los null paso de hacer nada")
+      //console.log("Ups con los null paso de hacer nada")
     } else {
-      recorrerArrayGoles({"id": idEquipoLocal, "nombre":equipoLocal, "golesPartido":golesLocal});
-    } 
-      /* 
-        acumulados=${acumulados}  
-        golesTotal=${golesTotal} 
-        medirGoles[idEquipoLocal].goles=${medirGoles[idEquipoLocal].goles} \n \n \n  
-      */
+      recorrerArrayGoles({
+        "id": idEquipoLocal, 
+        "nombre":equipoLocal, 
+        "golesPartido":golesLocal ,        
+        "golesRecibidosFuera":0, // sería interesante que no haga falta ésta línea 
+        "jornada":jornada,
+        "equipoLocal":equipoLocal,
+        "golesLocal":golesLocal,
+        "equipoVisitante":equipoVisitante,
+        "golesVisitante":golesVisitante
+      });
+      recorrerArrayGoles({
+        "id": idEquipoVisitante, 
+        "nombre":equipoVisitante, 
+        "golesPartido":golesVisitante ,
+        "golesRecibidosFuera":golesLocal, 
+        "jornada":jornada,
+        "equipoLocal":equipoLocal,
+        "golesLocal":golesLocal,
+        "equipoVisitante":equipoVisitante,
+        "golesVisitante":golesVisitante
+      });
+    }
   }  
 }
 
 function recorrerArrayGoles(Obj){
   for (let j = 0; j < arrayGoles.length ; j++){
     if ((arrayGoles[j].id === Obj.id)){
-      arrayGoles[j].totalGolesMarcados += Obj.golesPartido
-      //no entiendo por qué aparece mas de 20 veces
-      console.log("antes del retunr, estoy inyectando un nuevo objeto")
+      arrayGoles[j].totalGolesMarcados += Obj.golesPartido ;
+      arrayGoles[j].partidosJugados += 1 ;
+      arrayGoles[j].golesRecibidosFuera += Obj.golesRecibidosFuera
+      /* console.log(`
+      jornada=${Obj.jornada}
+      equipoLocal=${Obj.equipoLocal}
+      golesLocal=${Obj.golesLocal}
+      equipoVisitante=${Obj.equipoVisitante}
+      golesVisitante=${Obj.golesVisitante}
+      arrayGoles[j]=${JSON.stringify(arrayGoles[j])}         
+    `)*/
+      //console.log("antes del retunr, objeto actualizado")
       return
-      console.log("después del return: ALGO ESTÁ FALLANDO COLEGA") //
+      console.log("después del return: ALGO ESTÁ FALLANDO COLEGA") 
     }    
   }
   if (Obj.golesPartido === null ){
@@ -59,10 +80,14 @@ function recorrerArrayGoles(Obj){
       "id": Obj.id ,
       "nombre": Obj.nombre ,
       "totalGolesMarcados":Obj.golesPartido,
-      "golesRecibidosFuera":"",
+      "partidosJugados": 1,
+      "golesRecibidosFuera":0,
       "avg":""
-    })
+    });
+    //console.log("nuevo push(objeto) en el array")
   }
+}
 
-  //console.log(JSON.stringify(Obj));
+function calcularAvg (){
+  console.log(arrayGoles)
 }
