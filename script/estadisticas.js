@@ -7,10 +7,13 @@
       avg:
     } */
 let arrayGoles = [];
+let arrayAvg = [];
+let arrayGolesRecibidosFuera =[];
 
 contarGoles ();
 calcularAvg ();
-console.log(arrayGoles)
+ordenarAvg();
+ordenarGolesRecibidosFuera ();
 
 function contarGoles (){  
   for(let i=0 ; i<data.matches.length ;i++){
@@ -71,5 +74,35 @@ function recorrerArrayGoles(Obj){
 }
 
 function calcularAvg (){
+  for (let i = 0 ; i<arrayGoles.length; i++){
+    arrayGoles[i].avg = arrayGoles[i].totalGolesMarcados / arrayGoles[i].partidosJugados
+  }
   //console.log(arrayGoles)
+}
+
+function ordenarAvg (){
+  arrayAvg = arrayGoles.sort(function (a, b) {
+    if (a.avg > b.avg) {
+      return 1;
+    }
+    if (a.avg < b.avg) {
+      return -1;
+    }
+    return 0;
+  });
+  //console.log(arrayAvg)
+  
+}
+
+function ordenarGolesRecibidosFuera (){
+  arrayGolesRecibidosFuera = arrayGoles.sort(function (a, b) {
+    if (a.golesRecibidosFuera > b.golesRecibidosFuera) {
+      return 1;
+    }
+    if (a.golesRecibidosFuera < b.golesRecibidosFuera) {
+      return -1;
+    }
+    return 0;
+  });
+  console.log(arrayGolesRecibidosFuera);
 }
