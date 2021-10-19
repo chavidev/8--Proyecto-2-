@@ -1,18 +1,16 @@
-/* 
-{
-  id:
-  nombre:
-  totalGolesMarcados:
-  partidosJugados:
-  golesRecibidosFuera:
-  avg:
-}
- */
+/*  {
+      id:
+      nombre:
+      totalGolesMarcados:
+      partidosJugados:
+      golesRecibidosFuera:
+      avg:
+    } */
 let arrayGoles = [];
 
 contarGoles ();
 calcularAvg ();
-//console.log(arrayGoles)
+console.log(arrayGoles)
 
 function contarGoles (){  
   for(let i=0 ; i<data.matches.length ;i++){
@@ -25,30 +23,18 @@ function contarGoles (){
     golesLocal = data.matches[i].score.fullTime.homeTeam;
     golesVisitante = data.matches[i].score.fullTime.awayTeam  
     
-    if(golesLocal === null){
-      //console.log("Ups con los null paso de hacer nada")
-    } else {
+    if(!(golesLocal === null)){  
       recorrerArrayGoles({
         "id": idEquipoLocal, 
         "nombre":equipoLocal, 
         "golesPartido":golesLocal ,        
-        "golesRecibidosFuera":0, // sería interesante que no haga falta ésta línea 
-        "jornada":jornada,
-        "equipoLocal":equipoLocal,
-        "golesLocal":golesLocal,
-        "equipoVisitante":equipoVisitante,
-        "golesVisitante":golesVisitante
+        "golesRecibidosFuera":0 // evita el cálculo de los goles en contra cuando juega como local
       });
       recorrerArrayGoles({
         "id": idEquipoVisitante, 
         "nombre":equipoVisitante, 
         "golesPartido":golesVisitante ,
-        "golesRecibidosFuera":golesLocal, 
-        "jornada":jornada,
-        "equipoLocal":equipoLocal,
-        "golesLocal":golesLocal,
-        "equipoVisitante":equipoVisitante,
-        "golesVisitante":golesVisitante
+        "golesRecibidosFuera":golesLocal
       });
     }
   }  
@@ -73,21 +59,17 @@ function recorrerArrayGoles(Obj){
       console.log("después del return: ALGO ESTÁ FALLANDO COLEGA") 
     }    
   }
-  if (Obj.golesPartido === null ){
-    console.log("ups, te está entrando un nulo que no devería, pero aquí lo paro por si acaso")
-  } else {
-    arrayGoles.push({
-      "id": Obj.id ,
-      "nombre": Obj.nombre ,
-      "totalGolesMarcados":Obj.golesPartido,
-      "partidosJugados": 1,
-      "golesRecibidosFuera":0,
-      "avg":""
-    });
-    //console.log("nuevo push(objeto) en el array")
-  }
+  arrayGoles.push({
+    "id": Obj.id ,
+    "nombre": Obj.nombre ,
+    "totalGolesMarcados":Obj.golesPartido,
+    "partidosJugados": 1,
+    "golesRecibidosFuera":0,
+    "avg":""
+  });
+  //console.log("nuevo push(objeto) en el array")
 }
 
 function calcularAvg (){
-  console.log(arrayGoles)
+  //console.log(arrayGoles)
 }
