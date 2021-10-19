@@ -3,6 +3,7 @@
       nombre:
       totalGolesMarcados:
       partidosJugados:
+      partidosFuera:
       golesRecibidosFuera:
       avg:
     } */
@@ -14,6 +15,25 @@ contarGoles ();
 calcularAvg ();
 ordenarAvg();
 ordenarGolesRecibidosFuera ();
+crearTablaGoleados ();
+
+function crearTablaGoleados () {
+  let tablaGoleados = document.querySelector("tbody");
+  arrayGolesRecibidosFuera.forEach(equipo =>{
+    let tr = document.createElement("tr");
+    let equipoTd = document.createElement("td");
+    let logoTd = document.createElement("td");
+    let goleadoTd = document.createElement("td");
+    let partidosJugadosTd = document.createElement("td");
+    equipoTd.innerText = `${equipo.nombre}`;
+    logoTd.innerText = `${equipo.id}`;
+    goleadoTd.innerText = `${equipo.golesRecibidosFuera}`;
+    partidosJugadosTd.innerText = `${equipo.partidosFuera}`; //supongo que son SOLO los partidos jugados fuera
+    tr.append(equipoTd , logoTd, partidosJugadosTd , goleadoTd);
+    tablaGoleados.append(tr);
+    //console.log(equipo);
+  })
+}
 
 function contarGoles (){  
   for(let i=0 ; i<data.matches.length ;i++){
@@ -31,13 +51,15 @@ function contarGoles (){
         "id": idEquipoLocal, 
         "nombre":equipoLocal, 
         "golesPartido":golesLocal ,        
-        "golesRecibidosFuera":0 // evita el cálculo de los goles en contra cuando juega como local
+        "golesRecibidosFuera":0, // evita el cálculo de los goles en contra cuando juega como local
+        "visitante":false
       });
       recorrerArrayGoles({
         "id": idEquipoVisitante, 
         "nombre":equipoVisitante, 
         "golesPartido":golesVisitante ,
-        "golesRecibidosFuera":golesLocal
+        "golesRecibidosFuera":golesLocal,
+        "visitante":true
       });
     }
   }  
@@ -48,7 +70,8 @@ function recorrerArrayGoles(Obj){
     if ((arrayGoles[j].id === Obj.id)){
       arrayGoles[j].totalGolesMarcados += Obj.golesPartido ;
       arrayGoles[j].partidosJugados += 1 ;
-      arrayGoles[j].golesRecibidosFuera += Obj.golesRecibidosFuera
+      arrayGoles[j].golesRecibidosFuera += Obj.golesRecibidosFuera ;
+      arrayGoles[j].partidosFuera += Obj.visitante ? 1 : 0
       /* console.log(`
       jornada=${Obj.jornada}
       equipoLocal=${Obj.equipoLocal}
@@ -62,11 +85,15 @@ function recorrerArrayGoles(Obj){
       console.log("después del return: ALGO ESTÁ FALLANDO COLEGA") 
     }    
   }
+  
+  //let partidosFuera1 = Obj.visitante ? 1 : 0
+  //console.log(partidosFuera1);
   arrayGoles.push({
     "id": Obj.id ,
     "nombre": Obj.nombre ,
     "totalGolesMarcados":Obj.golesPartido,
     "partidosJugados": 1,
+    "partidosFuera": Obj.visitante ? 1 : 0,
     "golesRecibidosFuera":0,
     "avg":""
   });
@@ -83,14 +110,14 @@ function calcularAvg (){
 function ordenarAvg (){
   arrayAvg = arrayGoles.sort(function (a, b) {
     if (a.avg > b.avg) {
-      return 1;
+      return -1;
     }
     if (a.avg < b.avg) {
-      return -1;
+      return +1;
     }
     return 0;
   });
-  //console.log(arrayAvg)
+  console.log(arrayAvg)
   
 }
 
@@ -104,5 +131,5 @@ function ordenarGolesRecibidosFuera (){
     }
     return 0;
   });
-  console.log(arrayGolesRecibidosFuera);
+  //console.log(arrayGolesRecibidosFuera);
 }
