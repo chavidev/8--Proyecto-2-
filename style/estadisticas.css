@@ -1,0 +1,11 @@
+
+
+tr :nth-child(1) {
+  text-align:right ;
+  _border: 3px solid chartreuse;
+}
+
+td, th, h2 {
+  text-align: center;
+  _border: 3px solid rgb(55, 0, 255);
+}

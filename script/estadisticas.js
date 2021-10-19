@@ -1,54 +1,36 @@
-/*  {
-      id:
-      nombre:
-      totalGolesMarcados:
-      partidosJugados:
-      partidosFuera:
-      golesRecibidosFuera:
-      avg:
-    } */
-//let arrayGoles = [];
-//let arrayAvg = [];
-let arrayGolesRecibidosFuera =[];
+contarGoles (data.matches);
+/* 
+contargoles(data.maches)=>
+    recorrerArrayGoles(Obj, arrayGoles)    
+    calcularAvg (arrayGoles)  
+    ordenarAvg(arrayGoles)=>
+      crearTablaAvg
 
-contarGoles ();
-
-//calcularAvg ();
-
-//ordenarGolesRecibidosFuera ();
-//ordenarAvg();
-//crearTablaGoleados ();
-
-function crearTablaGoleados (array) {
-  let tablaGoleados = document.querySelector("#goleados"); //"tbody"
-  for(i=0;i<5;i++){
-  //arrayGolesRecibidosFuera.forEach(equipo =>{ arrayGolesRecibidosFuera[i]  //&& romper con return o brake
-    let tr = document.createElement("tr");
-    let equipoTd = document.createElement("td");
-    let logoTd = document.createElement("td");
-    let goleadoTd = document.createElement("td");
-    let partidosJugadosTd = document.createElement("td");
-    equipoTd.innerText = `${array[i].nombre}`;
-    logoTd.innerText = `${array[i].id}`;
-    goleadoTd.innerText = `${array[i].golesRecibidosFuera}`;
-    partidosJugadosTd.innerText = `${array[i].partidosFuera}`; //supongo que son SOLO los partidos jugados fuera
-    tr.append(equipoTd , logoTd, partidosJugadosTd , goleadoTd);
-    tablaGoleados.append(tr);
-    //console.log(equipo);
-  }//)
-}
-
-function contarGoles (){ //&&recibir data.maches 
+    ordenarGolesRecibidosFuera (arrayGoles)=>
+      crearTablaGoleados (array)
+*/
+/*
+{
+  id:
+  nombre:
+  totalGolesMarcados:
+  partidosJugados:
+  partidosFuera:
+  golesRecibidosFuera:
+  avg:
+} 
+*/
+function contarGoles (datos){ //datos = data.maches 
   let arrayGoles = []; 
-  for(let i=0 ; i<data.matches.length ;i++){
+  for(let i=0 ; i<datos.length ;i++){
     let jornada, equipoLocal, idEquipoLocal, equipoVisitante, idEquipoVisitante, golesLocal, golesVisitante  
-    jornada = data.matches[i].matchday;
-    equipoLocal = data.matches[i].homeTeam.name;
-    idEquipoLocal = data.matches[i].homeTeam.id;
-    equipoVisitante = data.matches[i].awayTeam.name;
-    idEquipoVisitante = data.matches[i].awayTeam.id;
-    golesLocal = data.matches[i].score.fullTime.homeTeam;
-    golesVisitante = data.matches[i].score.fullTime.awayTeam  
+    jornada = datos[i].matchday;
+    equipoLocal = datos[i].homeTeam.name;
+    idEquipoLocal = datos[i].homeTeam.id;
+    equipoVisitante = datos[i].awayTeam.name;
+    idEquipoVisitante = datos[i].awayTeam.id;
+    golesLocal = datos[i].score.fullTime.homeTeam;
+    golesVisitante = datos[i].score.fullTime.awayTeam  
     
     if(!(golesLocal === null)){  
       recorrerArrayGoles({
@@ -65,14 +47,13 @@ function contarGoles (){ //&&recibir data.maches
         "golesRecibidosFuera":golesLocal,
         "visitante":true
       },arrayGoles);
-    }
+    }    
   }
   calcularAvg (arrayGoles);  
   ordenarAvg(arrayGoles);
   ordenarGolesRecibidosFuera (arrayGoles);
- 
+  //console.log(arrayGoles);
 }
-
 function recorrerArrayGoles(Obj,array){
   for (let j = 0; j < array.length ; j++){
     if ((array[j].id === Obj.id)){
@@ -80,22 +61,9 @@ function recorrerArrayGoles(Obj,array){
       array[j].partidosJugados += 1 ;
       array[j].golesRecibidosFuera += Obj.golesRecibidosFuera ;
       array[j].partidosFuera += Obj.visitante ? 1 : 0
-      /* console.log(`
-      jornada=${Obj.jornada}
-      equipoLocal=${Obj.equipoLocal}
-      golesLocal=${Obj.golesLocal}
-      equipoVisitante=${Obj.equipoVisitante}
-      golesVisitante=${Obj.golesVisitante}
-      arrayGoles[j]=${JSON.stringify(arrayGoles[j])}         
-    `)*/
-      //console.log("antes del retunr, objeto actualizado")
       return
-      console.log("después del return: ALGO ESTÁ FALLANDO COLEGA") 
     }    
-  }
-  
-  //let partidosFuera1 = Obj.visitante ? 1 : 0
-  //console.log(partidosFuera1);
+  }  
   array.push({
     "id": Obj.id ,
     "nombre": Obj.nombre ,
@@ -105,16 +73,13 @@ function recorrerArrayGoles(Obj,array){
     "golesRecibidosFuera":0,
     "avg":""
   });
-  //console.log("nuevo push(objeto) en el array")
 }
-
 function calcularAvg (array){
   for (let i = 0 ; i<array.length; i++){
     array[i].avg = array[i].totalGolesMarcados / array[i].partidosJugados
   }
   //console.log(arrayGoles)
 }
-
 function ordenarAvg (array){
   arrayAvg = Array.from(array)
   arrayAvg.sort(function (a, b) {
@@ -127,11 +92,34 @@ function ordenarAvg (array){
     return 0;
   });
   console.log(arrayAvg)
-   
+  crearTablaAvg(arrayAvg);
+  
 }
-
+function crearTablaAvg (array){
+  let tablaAvg = document.querySelector("#tabla_avg");
+  for(i=0;i<5;i++){
+    let trAvg = document.createElement("tr");
+    let equipoTd = document.createElement("td");
+    let logoTd = document.createElement("td");
+    let imgTd = document.createElement("img");
+    imgTd.setAttribute("src",`https://crests.football-data.org/${array[i].id}.svg`);
+    imgTd.setAttribute("width","50px");
+    let partidosTd = document.createElement("td");
+    let golesTd = document.createElement("td");
+    let avgTd = document.createElement("td");
+  
+    equipoTd.innerText =`${array[i].nombre}`;
+    //logoTd.innerText =`${array[i].id}`;
+    logoTd.append(imgTd);
+    partidosTd.innerText =`${array[i].partidosJugados}`;
+    golesTd.innerText =`${array[i].totalGolesMarcados}`;
+    avgTd.innerText =`${array[i].avg.toFixed(2)}`;
+    trAvg.append(equipoTd, logoTd, partidosTd, golesTd, avgTd);
+    tablaAvg.append(trAvg);
+  }
+}
 function ordenarGolesRecibidosFuera (array){
-  arrayGolesRecibidosFuera = Array.from(array)
+  let arrayGolesRecibidosFuera = Array.from(array)
   arrayGolesRecibidosFuera.sort(function (a, b) {
     if (a.golesRecibidosFuera > b.golesRecibidosFuera) {
       return 1;
@@ -143,4 +131,26 @@ function ordenarGolesRecibidosFuera (array){
   });
   crearTablaGoleados (arrayGolesRecibidosFuera);
   //console.log(arrayGolesRecibidosFuera);
+}
+function crearTablaGoleados (array) { 
+  let tablaGoleados = document.querySelector("#tabla_goleados"); //"tbody"
+  for(i=0;i<5;i++){  //no hay forma de romper el foreach, el return no hace caso y el break rebienta el código
+  //array.forEach((equipo,i) =>{ arrayGolesRecibidosFuera[i]  //&& romper con return o brake
+    let tr = document.createElement("tr");
+    let equipoTd = document.createElement("td");
+    let logoTd = document.createElement("td");
+    let imgTd = document.createElement("img");
+    imgTd.setAttribute("src",`https://crests.football-data.org/${array[i].id}.svg`);
+    imgTd.setAttribute("width","50px");
+    let goleadoTd = document.createElement("td");
+    let partidosJugadosTd = document.createElement("td");
+    equipoTd.innerText = `${array[i].nombre}`;
+    //logoTd.innerText = `${array[i].id}`;
+    logoTd.append(imgTd);
+    goleadoTd.innerText = `${array[i].golesRecibidosFuera}`;
+    partidosJugadosTd.innerText = `${array[i].partidosFuera}`; //supongo que son SOLO los partidos jugados fuera
+    tr.append(equipoTd , logoTd, partidosJugadosTd , goleadoTd);
+    tablaGoleados.append(tr);
+    //console.log(equipo);    
+  }//)
 }
