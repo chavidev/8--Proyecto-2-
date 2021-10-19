@@ -13,8 +13,9 @@ let arrayGolesRecibidosFuera =[];
 
 contarGoles ();
 calcularAvg ();
-ordenarAvg();
 ordenarGolesRecibidosFuera ();
+
+ordenarAvg();
 crearTablaGoleados ();
 
 function crearTablaGoleados () {
@@ -110,10 +111,10 @@ function calcularAvg (){
 function ordenarAvg (){
   arrayAvg = arrayGoles.sort(function (a, b) {
     if (a.avg > b.avg) {
-      return -1;
+      return +1;
     }
     if (a.avg < b.avg) {
-      return +1;
+      return -1;
     }
     return 0;
   });
