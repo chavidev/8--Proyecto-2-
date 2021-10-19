@@ -19,21 +19,22 @@ ordenarAvg();
 crearTablaGoleados ();
 
 function crearTablaGoleados () {
-  let tablaGoleados = document.querySelector("tbody");
-  arrayGolesRecibidosFuera.forEach(equipo =>{
+  let tablaGoleados = document.querySelector("#goleados"); //"tbody"
+  for(i=0;i<5;i++){
+  //arrayGolesRecibidosFuera.forEach(equipo =>{ arrayGolesRecibidosFuera[i]
     let tr = document.createElement("tr");
     let equipoTd = document.createElement("td");
     let logoTd = document.createElement("td");
     let goleadoTd = document.createElement("td");
     let partidosJugadosTd = document.createElement("td");
-    equipoTd.innerText = `${equipo.nombre}`;
-    logoTd.innerText = `${equipo.id}`;
-    goleadoTd.innerText = `${equipo.golesRecibidosFuera}`;
-    partidosJugadosTd.innerText = `${equipo.partidosFuera}`; //supongo que son SOLO los partidos jugados fuera
+    equipoTd.innerText = `${arrayGolesRecibidosFuera[i].nombre}`;
+    logoTd.innerText = `${arrayGolesRecibidosFuera[i].id}`;
+    goleadoTd.innerText = `${arrayGolesRecibidosFuera[i].golesRecibidosFuera}`;
+    partidosJugadosTd.innerText = `${arrayGolesRecibidosFuera[i].partidosFuera}`; //supongo que son SOLO los partidos jugados fuera
     tr.append(equipoTd , logoTd, partidosJugadosTd , goleadoTd);
     tablaGoleados.append(tr);
     //console.log(equipo);
-  })
+  }//)
 }
 
 function contarGoles (){  
@@ -109,26 +110,28 @@ function calcularAvg (){
 }
 
 function ordenarAvg (){
-  arrayAvg = arrayGoles.sort(function (a, b) {
+  arrayAvg = Array.from(arrayGoles)
+  arrayAvg.sort(function (a, b) {
     if (a.avg > b.avg) {
-      return +1;
+      return -1;
     }
     if (a.avg < b.avg) {
-      return -1;
+      return +1;
     }
     return 0;
   });
   console.log(arrayAvg)
-  
+
 }
 
 function ordenarGolesRecibidosFuera (){
-  arrayGolesRecibidosFuera = arrayGoles.sort(function (a, b) {
+  arrayGolesRecibidosFuera = Array.from(arrayGoles)
+  arrayGolesRecibidosFuera.sort(function (a, b) {
     if (a.golesRecibidosFuera > b.golesRecibidosFuera) {
-      return 1;
+      return -1;
     }
     if (a.golesRecibidosFuera < b.golesRecibidosFuera) {
-      return -1;
+      return 1;
     }
     return 0;
   });
