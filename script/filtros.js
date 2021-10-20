@@ -19,6 +19,10 @@ verFiltros.append(test, botonEquipo);
 
 let arrayPartidos = [];
 crearFiltrosPartidos();
+//console.log(arrayPartidos);
+let arrayFiltro = [];
+filtrarEquipos("FC Barcelona")
+console.log(arrayFiltro);
 
 
 
@@ -48,6 +52,10 @@ function crearFiltrosPartidos(){
   //console.log(arrayPartidos);
 }
 
-function filtrarPartidos(array){
-
+function filtrarEquipos(busqueda){
+  //console.log(arrayPartidos);
+ arrayFiltro = arrayPartidos.filter(function(partido){
+   //¿que ocurre si en el return le pongo una función que tenga return?
+   return busqueda === partido.equipoLocal || busqueda === partido.equipoVisitante
+ })
 }
