@@ -23,8 +23,14 @@ crearFiltrosPartidos();
 let arrayFiltro = [];
 filtrarEquipos("FC Barcelona")
 console.log(arrayFiltro);
+filtrarResultado({equipo:"FC Barcelona",id:81 ,estado:"ganado"})
+console.log(arrayFiltro);
+filtrarEstado()
 
-
+//estado:
+//pendiente==SCHEDULED
+//terminado==FINISHED
+//jugando==????
 
 // ojo: crearFiltrosEstadisticas() arranca desde estadísticas => no intentes arrancar desde aquí
 function crearFiltrosEstadisticas(array){
@@ -46,8 +52,17 @@ function crearFiltrosPartidos(){
     idEquipoVisitante = data.matches[i].awayTeam.id;
     golesLocal = data.matches[i].score.fullTime.homeTeam;
     golesVisitante = data.matches[i].score.fullTime.awayTeam;
-
-    arrayPartidos.push({jornada,equipoLocal,idEquipoLocal,equipoVisitante,idEquipoVisitante,golesLocal,golesVisitante})
+    estado = data.matches[i].status;
+    if(golesLocal>golesVisitante){
+      resultado = idEquipoLocal 
+    }
+    if(golesLocal<golesVisitante){  //ésta condición sale de la API
+      resultado = idEquipoVisitante 
+    }
+    if(golesLocal===golesVisitante){
+      resultado = "empate" 
+    }
+    arrayPartidos.push({jornada,equipoLocal,idEquipoLocal,equipoVisitante,idEquipoVisitante,golesLocal,golesVisitante,estado,resultado})
   }
   //console.log(arrayPartidos);
 }
@@ -58,4 +73,21 @@ function filtrarEquipos(busqueda){
    //¿que ocurre si en el return le pongo una función que tenga return?
    return busqueda === partido.equipoLocal || busqueda === partido.equipoVisitante
  })
+}
+
+function filtrarResultado({equipo,id,estado}){
+  arrayFiltro = arrayFiltro.filter(function(partido){
+    if (estado == "ganado"){
+      console.log(`resultado:${partido.resultado} equipo:${equipo} id:${id} estado:${estado}`);
+      return id == partido.resultado
+    }
+    if (estado == "perdido"){
+      console.log("partido perdido");
+      return id == partido.resultado
+    }
+    if (estado == "empate"){
+      console.log("partido empatado");
+      return "empate" == partido.resultado
+    }
+  })
 }
