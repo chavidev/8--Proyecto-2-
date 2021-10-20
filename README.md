@@ -1,5 +1,13 @@
 🔒
- 
+ Hay que tener en cuenta que no se podía hacer con variables Globales, únicamente pasandole 
+ ¿argumentos/parámetros? a cada función.
+
+
+
+
+
+
+
  
 https://api.football-data.org/v2/competitions/2014/matches?=feb772340f1a4331991ee15d14e4fbd9
 url para obtener todos los partidos estáticos
