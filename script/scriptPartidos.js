@@ -1,3 +1,4 @@
+crearFiltrosPartidos();//desde aquí tendré que llamar a verPartidos
 verPartidos();
 
 function verPartidos (){
@@ -59,7 +60,8 @@ function desfijarCabezera () {
 }
  
 window.addEventListener('scroll', function(e) {
-  console.log(window.scrollY)
+  //veo el movimiento del scroll
+  //console.log(window.scrollY)
   if(window.scrollY >= 40) {
     fijarCabezera()
   } else {

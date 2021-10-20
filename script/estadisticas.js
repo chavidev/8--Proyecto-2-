@@ -52,6 +52,8 @@ function contarGoles (datos){ //datos = data.maches
   calcularAvg (arrayGoles);  
   ordenarAvg(arrayGoles);
   ordenarGolesRecibidosFuera (arrayGoles);
+
+  crearFiltrosEstadisticas(arrayGoles)
   //console.log(arrayGoles);
 }
 function recorrerArrayGoles(Obj,array){
@@ -91,7 +93,7 @@ function ordenarAvg (array){
     }
     return 0;
   });
-  console.log(arrayAvg)
+  //console.log(arrayAvg)
   crearTablaAvg(arrayAvg);
   
 }
