@@ -19,7 +19,9 @@ function verClasificacion(){
     // teamId    en principio no lo voy a usar
     arrayTd = [posicion , teamLogo , teamName  , partidosJugados , victorias , empates , derrotas , golesFaborables , golesContra , golesDiferencia , puntos];
     inyectarTd(arrayTd);
+    //console.log(arrayTd)
   }
+  
 }
  
 function inyectarTd(arrayTd){
