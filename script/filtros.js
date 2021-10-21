@@ -9,10 +9,9 @@ let inputEquipos = document.createElement("input");
 inputEquipos.setAttribute("placeholder","inserta el equipo aquí.....");
 inputEquipos.setAttribute("id","inputEquipos");
 //inputEquipos.setAttribute("onchange","buscaId()");
-inputEquipos.addEventListener("change", function() {
-  console.log("onchange ejecutado");
-  //buscaId();
-})
+inputEquipos.setAttribute("onkeyup","buscaId()");
+
+
 
 let botonBuscar = document.createElement("button");
 botonBuscar.innerText = "Buscar";
@@ -27,6 +26,8 @@ cajaEquipos.setAttribute("id","cajaEquipos");
 
 
 verFiltros.append(test, inputEquipos, botonBuscar, cajaEquipos);
+
+
 let cajaEquiposVista = document.querySelector("#cajaEquipos");
 // fin de la vista
 
@@ -45,18 +46,13 @@ filtrarResultado({equipo:"FC Barcelona",id:81 ,resultadoFiltro:"ganado"})
 //console.log(arrayFiltro);
 //si se está jugando cómo es y cuantos estados mas existen ¿aplazado?
 filtrarEstado({equipo:"FC Barcelona",id:81 ,resultadoFiltro:"ganado",estado:"FINISHED"});
-console.log(arrayFiltro);
+//console.log(arrayFiltro);
 
 //estado:
 //pendiente==SCHEDULED
 //terminado==FINISHED
 //jugando==????
 
-// ojo: crearFiltrosEstadisticas() arranca desde estadísticas => no intentes arrancar desde aquí
-function crearFiltrosEstadisticas(array){
-  console.log(array);
-  console.log("test desde crearFiltrosEstadísticas");
-}
 function buscaId(){
   let idEquipos = [
     {id: 95, nombre: 'Valencia CF'},
@@ -81,37 +77,27 @@ function buscaId(){
     {id: 77, nombre: 'Athletic Club'}
   ];
   let buscandoId = idEquipos.filter(function(equipo){
-    //return eliminarMayusculasEspacioTilde (inputEquipos.value) === eliminarMayusculasEspacioTilde (equipo.nombre);
     return eliminarMayusculasEspacioTilde (equipo.nombre).includes(eliminarMayusculasEspacioTilde (inputEquipos.value));
   });
-  console.log(buscandoId);
+  //console.log(buscandoId);
+  inyectandoCajaEquipos(buscandoId);
   
-  //cajaEquipos
-  
-  //
-  //cajaEquiposVista.innerText = `${buscandoId[0].nombre}`
-
-  //aqui va la llamada&&&&&&&&&&&&&&&&&&&&&&&&
-  inyectandoCajaEquipos(buscandoId)
 }
+
 function eliminarMayusculasEspacioTilde (nombre){
   return nombre.toUpperCase().replace(/ /g, "").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
 function inyectandoCajaEquipos(buscandoId){
-  //let botonBuscar = document.createElement("button");//borrar ejemplo
   let pEquipo
   cajaEquiposVista.innerText="";
   buscandoId.forEach(function (equipo){
-    console.log(equipo);
+    //console.log(equipo);
     pEquipo = document.createElement("p");
-    //pEquipo.createElement("p");
     pEquipo.setAttribute("class","pEquipo");
-    pEquipo.innerText=`${equipo.nombre}`//"aaaaaaa"//    
+    pEquipo.innerText=`${equipo.nombre}`;    
     cajaEquiposVista.append(pEquipo);
-    //cajaEquiposVista.innerText="aaaaaaa"
   })
-
 }
 
 function crearFiltrosPartidos(){
@@ -167,7 +153,62 @@ function filtrarResultado({equipo,id,resultadoFiltro}){
 
 function filtrarEstado({equipo,id,resultadoFiltro,estado}){
   arrayFiltro = arrayFiltro.filter(function(partido){    
-      console.log("Estado partido"+ estado);
+      //console.log("Estado partido"+ estado);
       return estado === partido.estado    
   })
+}
+
+
+
+
+let cajaEquiposVista2 = document.querySelector("#cajaEquiposVista2");
+let input2 = document.querySelector("#inputEquipos2");
+//input2.addEventListener("keyup",function (){keyupInput2()})
+//input2.addEventListener("keyup",keyupInput2)
+
+function keyupInput2(){
+  console.log(input2.value)
+  let idEquipos = [
+    {id: 95, nombre: 'Valencia CF'},
+    {id: 82, nombre: 'Getafe CF'},
+    {id: 264, nombre: 'Cádiz CF'},
+    {id: 88, nombre: 'Levante UD'},
+    {id: 89, nombre: 'RCD Mallorca'},
+    {id: 90, nombre: 'Real Betis Balompié'},
+    {id: 79, nombre: 'CA Osasuna'},
+    {id: 80, nombre: 'RCD Espanyol de Barcelona'},
+    {id: 263, nombre: 'Deportivo Alavés'},
+    {id: 86, nombre: 'Real Madrid CF'},
+    {id: 558, nombre: 'RC Celta de Vigo'},
+    {id: 78, nombre: 'Club Atlético de Madrid'},
+    {id: 81, nombre: 'FC Barcelona'},
+    {id: 92, nombre: 'Real Sociedad de Fútbol'},
+    {id: 559, nombre: 'Sevilla FC'},
+    {id: 87, nombre: 'Rayo Vallecano de Madrid'},
+    {id: 94, nombre: 'Villarreal CF'},
+    {id: 83, nombre: 'Granada CF'},
+    {id: 285, nombre: 'Elche CF'},
+    {id: 77, nombre: 'Athletic Club'}
+  ];
+  let buscandoId = idEquipos.filter(function(equipo){
+    return eliminarMayusculasEspacioTilde (equipo.nombre).includes(eliminarMayusculasEspacioTilde (input2.value));
+  });
+  inyectandoCajaEquipos2(buscandoId)
+}
+
+function inyectandoCajaEquipos2(buscandoId){
+  let pEquipo
+  cajaEquiposVista2.innerText="";
+  buscandoId.forEach(function (equipo){
+    //console.log(equipo);
+    pEquipo = document.createElement("p");
+    //pEquipo.createElement("p");
+    pEquipo.setAttribute("class","pEquipo");
+    pEquipo.innerText=`${equipo.nombre}`;
+    cajaEquiposVista2.append(pEquipo);
+  })
+}
+
+function ejecutarFiltros(){
+
 }
