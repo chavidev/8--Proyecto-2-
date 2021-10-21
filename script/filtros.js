@@ -125,7 +125,7 @@ function crearFiltrosPartidos(){
   }
   //console.log(arrayPartidos);
 }
-//si no hay nada en palabra a buscar => return
+//función antigua, ya la uso en otro lado
 function filtrarEquipos(busqueda){
   //console.log(arrayPartidos);
  arrayFiltro = arrayPartidos.filter(function(partido){
@@ -167,7 +167,7 @@ let input2 = document.querySelector("#inputEquipos2");
 //input2.addEventListener("keyup",keyupInput2)
 
 function keyupInput2(){
-  console.log(input2.value)
+  //console.log(input2.value)
   let idEquipos = [
     {id: 95, nombre: 'Valencia CF'},
     {id: 82, nombre: 'Getafe CF'},
@@ -194,6 +194,7 @@ function keyupInput2(){
     return eliminarMayusculasEspacioTilde (equipo.nombre).includes(eliminarMayusculasEspacioTilde (input2.value));
   });
   inyectandoCajaEquipos2(buscandoId)
+  return idEquipos[0].id
 }
 
 function inyectandoCajaEquipos2(buscandoId){
@@ -210,5 +211,16 @@ function inyectandoCajaEquipos2(buscandoId){
 }
 
 function ejecutarFiltros(){
+  console.log("el id del equipo es:"+keyupInput2());
+  //filtro los partidos pasandole el id del equipo a buscar
+  filtrarEquipos(keyupInput2());
+  console.log(arrayFiltro); 
+}
 
+function filtrarEquipos(busqueda){
+  //console.log(arrayPartidos);
+ arrayFiltro = arrayPartidos.filter(function(partido){
+   //¿que ocurre si en el return le pongo una función que tenga return?
+   return busqueda === partido.idEquipoLocal || busqueda === partido.idEquipoVisitante
+ })
 }
