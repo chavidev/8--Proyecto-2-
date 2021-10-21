@@ -1,17 +1,17 @@
 crearFiltrosPartidos();//desde aquí tendré que llamar a verPartidos
-verPartidos();
+verPartidos(data.matches);
 
-function verPartidos (){
+function verPartidos (array){
   let partido , local, resultado, visitante, jornada , equipoLocal , idEquipoLocal , equipoVisitante , idEquipoVisitante;
   let partidos = document.querySelector("tbody");
-  for (i=0 ; i<data.matches.length ; i++ ){
-    jornada = data.matches[i].matchday;
-    equipoLocal = data.matches[i].homeTeam.name;
-    idEquipoLocal = data.matches[i].homeTeam.id;
-    equipoVisitante = data.matches[i].awayTeam.name;
-    idEquipoVisitante = data.matches[i].awayTeam.id;
-    golesLocal = data.matches[i].score.fullTime.homeTeam;
-    golesVisitante = data.matches[i].score.fullTime.awayTeam
+  for (i=0 ; i<array.length ; i++ ){
+    jornada = array[i].matchday;
+    equipoLocal = array[i].homeTeam.name;
+    idEquipoLocal = array[i].homeTeam.id;
+    equipoVisitante = array[i].awayTeam.name;
+    idEquipoVisitante = array[i].awayTeam.id;
+    golesLocal = array[i].score.fullTime.homeTeam;
+    golesVisitante = array[i].score.fullTime.awayTeam
     
     partido = document.createElement("tr");
     local = document.createElement("td");
