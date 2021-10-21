@@ -1,3 +1,5 @@
+//pendiente de hacer click sobre el ele
+
 // aquí está la vista
 let verFiltros = document.querySelector("#filtros");
 let test = document.createElement("p")
@@ -6,13 +8,17 @@ test.innerText = "test desde filtros";
 let inputEquipos = document.createElement("input");
 inputEquipos.setAttribute("placeholder","inserta el equipo aquí.....");
 inputEquipos.setAttribute("id","inputEquipos");
-
+//inputEquipos.setAttribute("onchange","buscaId()");
+inputEquipos.addEventListener("change", function() {
+  console.log("onchange ejecutado");
+  //buscaId();
+})
 
 let botonBuscar = document.createElement("button");
 botonBuscar.innerText = "Buscar";
 //quiero hacerlo con una arrow function
 //botonEquipo.setAttribute("onclick","()=>console.log('Barsa')")
-botonBuscar.setAttribute("onclick","buscaId()")
+botonBuscar.setAttribute("onclick","buscaId()");
 
 let cajaEquipos = document.createElement("div")
 cajaEquipos.setAttribute("id","cajaEquipos");
@@ -21,33 +27,13 @@ cajaEquipos.setAttribute("id","cajaEquipos");
 
 
 verFiltros.append(test, inputEquipos, botonBuscar, cajaEquipos);
+let cajaEquiposVista = document.querySelector("#cajaEquipos");
 // fin de la vista
 
 //###########################################
 
 //inicio del ¿Modelo? (la parte funcional,modelo no lo termino de entender)
-let idEquipos = [
-  {id: 95, nombre: 'Valencia CF'},
-  {id: 82, nombre: 'Getafe CF'},
-  {id: 264, nombre: 'Cádiz CF'},
-  {id: 88, nombre: 'Levante UD'},
-  {id: 89, nombre: 'RCD Mallorca'},
-  {id: 90, nombre: 'Real Betis Balompié'},
-  {id: 79, nombre: 'CA Osasuna'},
-  {id: 80, nombre: 'RCD Espanyol de Barcelona'},
-  {id: 263, nombre: 'Deportivo Alavés'},
-  {id: 86, nombre: 'Real Madrid CF'},
-  {id: 558, nombre: 'RC Celta de Vigo'},
-  {id: 78, nombre: 'Club Atlético de Madrid'},
-  {id: 81, nombre: 'FC Barcelona'},
-  {id: 92, nombre: 'Real Sociedad de Fútbol'},
-  {id: 559, nombre: 'Sevilla FC'},
-  {id: 87, nombre: 'Rayo Vallecano de Madrid'},
-  {id: 94, nombre: 'Villarreal CF'},
-  {id: 83, nombre: 'Granada CF'},
-  {id: 285, nombre: 'Elche CF'},
-  {id: 77, nombre: 'Athletic Club'}
-];
+
 
 let arrayPartidos = [];
 crearFiltrosPartidos();
@@ -72,10 +58,60 @@ function crearFiltrosEstadisticas(array){
   console.log("test desde crearFiltrosEstadísticas");
 }
 function buscaId(){
-  console.log("FC Barcelona");
+  let idEquipos = [
+    {id: 95, nombre: 'Valencia CF'},
+    {id: 82, nombre: 'Getafe CF'},
+    {id: 264, nombre: 'Cádiz CF'},
+    {id: 88, nombre: 'Levante UD'},
+    {id: 89, nombre: 'RCD Mallorca'},
+    {id: 90, nombre: 'Real Betis Balompié'},
+    {id: 79, nombre: 'CA Osasuna'},
+    {id: 80, nombre: 'RCD Espanyol de Barcelona'},
+    {id: 263, nombre: 'Deportivo Alavés'},
+    {id: 86, nombre: 'Real Madrid CF'},
+    {id: 558, nombre: 'RC Celta de Vigo'},
+    {id: 78, nombre: 'Club Atlético de Madrid'},
+    {id: 81, nombre: 'FC Barcelona'},
+    {id: 92, nombre: 'Real Sociedad de Fútbol'},
+    {id: 559, nombre: 'Sevilla FC'},
+    {id: 87, nombre: 'Rayo Vallecano de Madrid'},
+    {id: 94, nombre: 'Villarreal CF'},
+    {id: 83, nombre: 'Granada CF'},
+    {id: 285, nombre: 'Elche CF'},
+    {id: 77, nombre: 'Athletic Club'}
+  ];
+  let buscandoId = idEquipos.filter(function(equipo){
+    //return eliminarMayusculasEspacioTilde (inputEquipos.value) === eliminarMayusculasEspacioTilde (equipo.nombre);
+    return eliminarMayusculasEspacioTilde (equipo.nombre).includes(eliminarMayusculasEspacioTilde (inputEquipos.value));
+  });
+  console.log(buscandoId);
+  
   //cajaEquipos
-  let cajaEquiposVista = document.querySelector("#cajaEquipos");
-  cajaEquiposVista.innerText = "cajaequipos vista"
+  
+  //
+  //cajaEquiposVista.innerText = `${buscandoId[0].nombre}`
+
+  //aqui va la llamada&&&&&&&&&&&&&&&&&&&&&&&&
+  inyectandoCajaEquipos(buscandoId)
+}
+function eliminarMayusculasEspacioTilde (nombre){
+  return nombre.toUpperCase().replace(/ /g, "").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function inyectandoCajaEquipos(buscandoId){
+  //let botonBuscar = document.createElement("button");//borrar ejemplo
+  let pEquipo
+  cajaEquiposVista.innerText="";
+  buscandoId.forEach(function (equipo){
+    console.log(equipo);
+    pEquipo = document.createElement("p");
+    //pEquipo.createElement("p");
+    pEquipo.setAttribute("class","pEquipo");
+    pEquipo.innerText=`${equipo.nombre}`//"aaaaaaa"//    
+    cajaEquiposVista.append(pEquipo);
+    //cajaEquiposVista.innerText="aaaaaaa"
+  })
+
 }
 
 function crearFiltrosPartidos(){
