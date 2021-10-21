@@ -2,30 +2,64 @@
 let verFiltros = document.querySelector("#filtros");
 let test = document.createElement("p")
 test.innerText = "test desde filtros";
-let botonEquipo = document.createElement("button");
-botonEquipo.innerText = "Boton Barsa";
-//quiero hacerlo con una arrow function
-//botonEquipo.setAttribute("onclick","function ()=>console.log('Barsa')")
-botonEquipo.setAttribute("onclick","verEquipo()")
 
-//verFiltros.innerHTML = "<p>hola colega desde filtros</p>";
-verFiltros.append(test, botonEquipo);
+let inputEquipos = document.createElement("input");
+inputEquipos.setAttribute("placeholder","inserta el equipo aquí.....");
+inputEquipos.setAttribute("id","inputEquipos");
+
+
+let botonBuscar = document.createElement("button");
+botonBuscar.innerText = "Buscar";
+//quiero hacerlo con una arrow function
+//botonEquipo.setAttribute("onclick","()=>console.log('Barsa')")
+botonBuscar.setAttribute("onclick","buscaId()")
+
+let cajaEquipos = document.createElement("div")
+cajaEquipos.setAttribute("id","cajaEquipos");
+//cajaEquipos.innerText("el listado de equipos dinámico va aquí")
+
+
+
+verFiltros.append(test, inputEquipos, botonBuscar, cajaEquipos);
 // fin de la vista
 
 //###########################################
 
 //inicio del ¿Modelo? (la parte funcional,modelo no lo termino de entender)
-
+let idEquipos = [
+  {id: 95, nombre: 'Valencia CF'},
+  {id: 82, nombre: 'Getafe CF'},
+  {id: 264, nombre: 'Cádiz CF'},
+  {id: 88, nombre: 'Levante UD'},
+  {id: 89, nombre: 'RCD Mallorca'},
+  {id: 90, nombre: 'Real Betis Balompié'},
+  {id: 79, nombre: 'CA Osasuna'},
+  {id: 80, nombre: 'RCD Espanyol de Barcelona'},
+  {id: 263, nombre: 'Deportivo Alavés'},
+  {id: 86, nombre: 'Real Madrid CF'},
+  {id: 558, nombre: 'RC Celta de Vigo'},
+  {id: 78, nombre: 'Club Atlético de Madrid'},
+  {id: 81, nombre: 'FC Barcelona'},
+  {id: 92, nombre: 'Real Sociedad de Fútbol'},
+  {id: 559, nombre: 'Sevilla FC'},
+  {id: 87, nombre: 'Rayo Vallecano de Madrid'},
+  {id: 94, nombre: 'Villarreal CF'},
+  {id: 83, nombre: 'Granada CF'},
+  {id: 285, nombre: 'Elche CF'},
+  {id: 77, nombre: 'Athletic Club'}
+];
 
 let arrayPartidos = [];
 crearFiltrosPartidos();
 //console.log(arrayPartidos);
 let arrayFiltro = [];
 filtrarEquipos("FC Barcelona")
+//console.log(arrayFiltro);
+filtrarResultado({equipo:"FC Barcelona",id:81 ,resultadoFiltro:"ganado"})
+//console.log(arrayFiltro);
+//si se está jugando cómo es y cuantos estados mas existen ¿aplazado?
+filtrarEstado({equipo:"FC Barcelona",id:81 ,resultadoFiltro:"ganado",estado:"FINISHED"});
 console.log(arrayFiltro);
-filtrarResultado({equipo:"FC Barcelona",id:81 ,estado:"ganado"})
-console.log(arrayFiltro);
-filtrarEstado()
 
 //estado:
 //pendiente==SCHEDULED
@@ -37,8 +71,11 @@ function crearFiltrosEstadisticas(array){
   console.log(array);
   console.log("test desde crearFiltrosEstadísticas");
 }
-function verEquipo(){
+function buscaId(){
   console.log("FC Barcelona");
+  //cajaEquipos
+  let cajaEquiposVista = document.querySelector("#cajaEquipos");
+  cajaEquiposVista.innerText = "cajaequipos vista"
 }
 
 function crearFiltrosPartidos(){
@@ -66,7 +103,7 @@ function crearFiltrosPartidos(){
   }
   //console.log(arrayPartidos);
 }
-
+//si no hay nada en palabra a buscar => return
 function filtrarEquipos(busqueda){
   //console.log(arrayPartidos);
  arrayFiltro = arrayPartidos.filter(function(partido){
@@ -75,19 +112,26 @@ function filtrarEquipos(busqueda){
  })
 }
 
-function filtrarResultado({equipo,id,estado}){
+function filtrarResultado({equipo,id,resultadoFiltro}){
   arrayFiltro = arrayFiltro.filter(function(partido){
-    if (estado == "ganado"){
-      console.log(`resultado:${partido.resultado} equipo:${equipo} id:${id} estado:${estado}`);
+    if (resultadoFiltro == "ganado"){
+      //console.log(`resultado:${partido.resultado} equipo:${equipo} id:${id} resultadoFiltro:${resultadoFiltro}`);
       return id == partido.resultado
     }
-    if (estado == "perdido"){
+    if (resultadoFiltro == "perdido"){
       console.log("partido perdido");
       return id == partido.resultado
     }
-    if (estado == "empate"){
+    if (resultadoFiltro == "empate"){
       console.log("partido empatado");
       return "empate" == partido.resultado
     }
+  })
+}
+
+function filtrarEstado({equipo,id,resultadoFiltro,estado}){
+  arrayFiltro = arrayFiltro.filter(function(partido){    
+      console.log("Estado partido"+ estado);
+      return estado === partido.estado    
   })
 }
