@@ -194,7 +194,7 @@ function keyupInput2(){
     return eliminarMayusculasEspacioTilde (equipo.nombre).includes(eliminarMayusculasEspacioTilde (input2.value));
   });
   inyectandoCajaEquipos2(buscandoId)
-  return idEquipos[0].id
+  return buscandoId[0].id
 }
 
 function inyectandoCajaEquipos2(buscandoId){
@@ -227,8 +227,10 @@ function filtrarEquipos(busqueda){
 }
 
 function verPartidos2 (array){
+  //console.log("verpartidos2");
   let partido , local, resultado, visitante, jornada , equipoLocal , idEquipoLocal , equipoVisitante , idEquipoVisitante;
   let partidos = document.querySelector("tbody");
+  partidos.innerText = "";
   for (i=0 ; i<array.length ; i++ ){
     jornada = array[i].jornada;
     equipoLocal = array[i].equipoLocal;

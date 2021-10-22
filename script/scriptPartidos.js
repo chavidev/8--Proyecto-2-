@@ -2,8 +2,10 @@ crearFiltrosPartidos();//desde aquí tendré que llamar a verPartidos
 verPartidos(data.matches);
 
 function verPartidos (array){
+  console.log("data.matches"+JSON.stringify(data.matches))
   let partido , local, resultado, visitante, jornada , equipoLocal , idEquipoLocal , equipoVisitante , idEquipoVisitante;
   let partidos = document.querySelector("tbody");
+  partidos.innerText = "";
   for (i=0 ; i<array.length ; i++ ){
     jornada = array[i].matchday;
     equipoLocal = array[i].homeTeam.name;
