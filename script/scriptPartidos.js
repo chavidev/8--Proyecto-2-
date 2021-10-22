@@ -1,19 +1,23 @@
 crearFiltrosPartidos();//desde aquí tendré que llamar a verPartidos
 verPartidos(data.matches);
 
+
+// si el primero es undefined, coge el segundo
+// && no consigo hacerlo funcionar para la llamada desde el filtro
 function verPartidos (array){
   console.log("data.matches"+JSON.stringify(data.matches))
   let partido , local, resultado, visitante, jornada , equipoLocal , idEquipoLocal , equipoVisitante , idEquipoVisitante;
   let partidos = document.querySelector("tbody");
   partidos.innerText = "";
   for (i=0 ; i<array.length ; i++ ){
-    jornada = array[i].matchday;
-    equipoLocal = array[i].homeTeam.name;
-    idEquipoLocal = array[i].homeTeam.id;
-    equipoVisitante = array[i].awayTeam.name;
-    idEquipoVisitante = array[i].awayTeam.id;
-    golesLocal = array[i].score.fullTime.homeTeam;
-    golesVisitante = array[i].score.fullTime.awayTeam
+    //console.log(array[i].awayTeam.name)
+    jornada = typeof array[i].matchday === undefined ? array[i].jornada : array[i].matchday;
+    equipoLocal = typeof array[i].homeTeam === undefined ? array[i].equipoLocal : array[i].homeTeam.name;
+    idEquipoLocal = typeof array[i].homeTeam === undefined ? array[i].idEquipoLocal : array[i].homeTeam.id;
+    equipoVisitante = typeof array[i].awayTeam === undefined ? array[i].equipoVisitante : array[i].awayTeam.name;
+    idEquipoVisitante = typeof array[i].awayTeam === undefined ? array[i].idEquipoVisitante : array[i].awayTeam.id;
+    golesLocal = typeof array[i].score === undefined ? array[i].golesLocal : array[i].score.fullTime.homeTeam;
+    golesVisitante = typeof array[i].score === undefined ? array[i].golesVisitante : array[i].score.fullTime.awayTeam;
     
     partido = document.createElement("tr");
     local = document.createElement("td");

@@ -114,8 +114,9 @@ function ejecutarFiltros(){
   let filtroEstado =  document.querySelector('input[name="estado"]:checked').value
   if(filtroEstado !== 'Todos') filtrarEstado({ estado: filtroEstado })
  
-  verPartidos2(arrayFiltro);
+  verPartidos2(arrayFiltro); //&&
   //console.log(arrayFiltro)
+  cajaEquiposVista2.innerText = ""; //limpio la caja para evitar que me salga una lista muy larga
 }
 
 function filtrarEquipos(busqueda){
