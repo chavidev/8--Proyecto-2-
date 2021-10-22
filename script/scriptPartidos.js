@@ -5,12 +5,13 @@ verPartidos(data.matches);
 // si el primero es undefined, coge el segundo
 // && no consigo hacerlo funcionar para la llamada desde el filtro
 function verPartidos (array){
-  console.log("data.matches"+JSON.stringify(data.matches))
+  //console.log("data.matches"+JSON.stringify(data.matches))
   let partido , local, resultado, visitante, jornada , equipoLocal , idEquipoLocal , equipoVisitante , idEquipoVisitante;
   let partidos = document.querySelector("tbody");
   partidos.innerText = "";
   for (i=0 ; i<array.length ; i++ ){
     //console.log(array[i].awayTeam.name)
+    //&& dejalo como está
     jornada = typeof array[i].matchday === undefined ? array[i].jornada : array[i].matchday;
     equipoLocal = typeof array[i].homeTeam === undefined ? array[i].equipoLocal : array[i].homeTeam.name;
     idEquipoLocal = typeof array[i].homeTeam === undefined ? array[i].idEquipoLocal : array[i].homeTeam.id;

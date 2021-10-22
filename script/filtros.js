@@ -2,11 +2,8 @@ let arrayPartidos = [];
 crearFiltrosPartidos();
 //console.log(arrayPartidos);
 let arrayFiltro = [];
-filtrarResultado({equipo:"FC Barcelona",id:81 ,resultadoFiltro:"ganado"})
-//console.log(arrayFiltro);
+let variablesFiltro = {};
 //si se está jugando cómo es y cuantos estados mas existen ¿aplazado?
-filtrarEstado({equipo:"FC Barcelona",id:81 ,resultadoFiltro:"ganado",estado:"FINISHED"});
-//console.log(arrayFiltro);
  
 //estado:
 //pendiente==SCHEDULED
@@ -16,7 +13,7 @@ filtrarEstado({equipo:"FC Barcelona",id:81 ,resultadoFiltro:"ganado",estado:"FIN
 function eliminarMayusculasEspacioTilde (nombre){
   return nombre.toUpperCase().replace(/ /g, "").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
- 
+ //&& eliminar ésta función
 function crearFiltrosPartidos(){
   //console.log(data.matches);
   //console.log("test desde crearFiltrosPartidos");
@@ -49,15 +46,10 @@ function crearFiltrosPartidos(){
   //console.log(arrayPartidos);
 }
  
-function filtrarEstado({estado}){
-  arrayFiltro = arrayFiltro.filter(function(partido){    
-      return estado === partido.estado    
-  })
-}
- 
 let cajaEquiposVista2 = document.querySelector("#cajaEquiposVista2");
 let input2 = document.querySelector("#inputEquipos2");
- 
+
+//&& pendiente de extraer la info desde una función 
 function keyupInput2(){
   //console.log(input2.value)
   let idEquipos = [
@@ -114,9 +106,11 @@ function ejecutarFiltros(){
   let filtroEstado =  document.querySelector('input[name="estado"]:checked').value
   if(filtroEstado !== 'Todos') filtrarEstado({ estado: filtroEstado })
  
+  variablesFiltro = {id: keyupInput2(),resultadoFiltro: filtroResultado,posicion: filtroPosicion,estado: filtroEstado }
   verPartidos2(arrayFiltro); //&&
   //console.log(arrayFiltro)
   cajaEquiposVista2.innerText = ""; //limpio la caja para evitar que me salga una lista muy larga
+  console.log("variablesFiltro:"+ JSON.stringify(variablesFiltro));
 }
 
 function filtrarEquipos(busqueda){
@@ -132,6 +126,7 @@ function filtrarResultado({ id, resultadoFiltro }){
       arrayFiltro = arrayFiltro.filter((partido) => { if(id == partido.resultado) return partido })
       break;
     case "perdidos":
+      //&& si ganó el equipo contrario
       arrayFiltro = arrayFiltro.filter((partido) => { if(id != partido.resultado && partido.resultado !== 'empate' && partido.resultado !== null ) return partido })
       break;
     case "empatados":
@@ -155,6 +150,12 @@ function filtrarPosicion({ id, posicion }){
       arrayFiltro = arrayFiltro
       break;
   }
+}
+ 
+function filtrarEstado({estado}){
+  arrayFiltro = arrayFiltro.filter(function(partido){    
+      return estado === partido.estado    
+  })
 }
  
 function verPartidos2 (array){
