@@ -1,50 +1,7 @@
-//pendiente de hacer click sobre el ele
- 
-// aquí está la vista
-//&& let verFiltros = document.querySelector("#filtros");
-
-/* 
-let test = document.createElement("p")
-test.innerText = "test desde filtros";
- 
-let inputEquipos = document.createElement("input");
-inputEquipos.setAttribute("placeholder","inserta el equipo aquí.....");
-inputEquipos.setAttribute("id","inputEquipos");
-//inputEquipos.setAttribute("onchange","buscaId()");
-inputEquipos.setAttribute("onkeyup","buscaId()");
- */ 
- 
- 
-//&&let botonBuscar = document.createElement("button");
-//&&botonBuscar.innerText = "Buscar";
-//quiero hacerlo con una arrow function
-//botonEquipo.setAttribute("onclick","()=>console.log('Barsa')")
-//&& botonBuscar.setAttribute("onclick","buscaId()");
-/* && 
-let cajaEquipos = document.createElement("div")
-cajaEquipos.setAttribute("id","cajaEquipos");
- */
-//cajaEquipos.innerText("el listado de equipos dinámico va aquí")
- 
- 
- 
-//&& verFiltros.append(test, inputEquipos, botonBuscar, cajaEquipos);
- 
- 
-//&& let cajaEquiposVista = document.querySelector("#cajaEquipos");
-// fin de la vista
- 
-//###########################################
- 
-//inicio del ¿Modelo? (la parte funcional,modelo no lo termino de entender)
- 
- 
 let arrayPartidos = [];
 crearFiltrosPartidos();
 //console.log(arrayPartidos);
 let arrayFiltro = [];
-filtrarEquipos("FC Barcelona")
-//console.log(arrayFiltro);
 filtrarResultado({equipo:"FC Barcelona",id:81 ,resultadoFiltro:"ganado"})
 //console.log(arrayFiltro);
 //si se está jugando cómo es y cuantos estados mas existen ¿aplazado?
@@ -54,54 +11,12 @@ filtrarEstado({equipo:"FC Barcelona",id:81 ,resultadoFiltro:"ganado",estado:"FIN
 //estado:
 //pendiente==SCHEDULED
 //terminado==FINISHED
-//jugando==????
- /* 
-function buscaId(){
-  let idEquipos = [
-    {id: 95, nombre: 'Valencia CF'},
-    {id: 82, nombre: 'Getafe CF'},
-    {id: 264, nombre: 'Cádiz CF'},
-    {id: 88, nombre: 'Levante UD'},
-    {id: 89, nombre: 'RCD Mallorca'},
-    {id: 90, nombre: 'Real Betis Balompié'},
-    {id: 79, nombre: 'CA Osasuna'},
-    {id: 80, nombre: 'RCD Espanyol de Barcelona'},
-    {id: 263, nombre: 'Deportivo Alavés'},
-    {id: 86, nombre: 'Real Madrid CF'},
-    {id: 558, nombre: 'RC Celta de Vigo'},
-    {id: 78, nombre: 'Club Atlético de Madrid'},
-    {id: 81, nombre: 'FC Barcelona'},
-    {id: 92, nombre: 'Real Sociedad de Fútbol'},
-    {id: 559, nombre: 'Sevilla FC'},
-    {id: 87, nombre: 'Rayo Vallecano de Madrid'},
-    {id: 94, nombre: 'Villarreal CF'},
-    {id: 83, nombre: 'Granada CF'},
-    {id: 285, nombre: 'Elche CF'},
-    {id: 77, nombre: 'Athletic Club'}
-  ];
-  let buscandoId = idEquipos.filter(function(equipo){
-    return eliminarMayusculasEspacioTilde (equipo.nombre).includes(eliminarMayusculasEspacioTilde (inputEquipos.value));
-  });
-  //console.log(buscandoId);
-  inyectandoCajaEquipos(buscandoId); 
-} */
- 
+//jugando==????  &&
+
 function eliminarMayusculasEspacioTilde (nombre){
   return nombre.toUpperCase().replace(/ /g, "").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
-/*  &&
-function inyectandoCajaEquipos(buscandoId){
-  let pEquipo
-  cajaEquiposVista.innerText="";
-  buscandoId.forEach(function (equipo){
-    //console.log(equipo);
-    pEquipo = document.createElement("p");
-    pEquipo.setAttribute("class","pEquipo");
-    pEquipo.innerText=`${equipo.nombre}`;    
-    cajaEquiposVista.append(pEquipo);
-  })
-}
- */ 
+ 
 function crearFiltrosPartidos(){
   //console.log(data.matches);
   //console.log("test desde crearFiltrosPartidos");
@@ -133,14 +48,6 @@ function crearFiltrosPartidos(){
   }
   //console.log(arrayPartidos);
 }
-//función antigua, ya la uso en otro lado
-function filtrarEquipos(busqueda){
-  //console.log(arrayPartidos);
- arrayFiltro = arrayPartidos.filter(function(partido){
-   //¿que ocurre si en el return le pongo una función que tenga return?
-   return busqueda === partido.equipoLocal || busqueda === partido.equipoVisitante
- })
-}
  
 function filtrarEstado({estado}){
   arrayFiltro = arrayFiltro.filter(function(partido){    
@@ -150,8 +57,6 @@ function filtrarEstado({estado}){
  
 let cajaEquiposVista2 = document.querySelector("#cajaEquiposVista2");
 let input2 = document.querySelector("#inputEquipos2");
-//input2.addEventListener("keyup",function (){keyupInput2()})
-//input2.addEventListener("keyup",keyupInput2)
  
 function keyupInput2(){
   //console.log(input2.value)
@@ -186,11 +91,9 @@ function keyupInput2(){
  
 function inyectandoCajaEquipos2(buscandoId){
   let pEquipo
-  cajaEquiposVista2.innerText="";
-  buscandoId.forEach(function (equipo){
-    //console.log(equipo);
+    cajaEquiposVista2.innerText="";
+    buscandoId.forEach(function (equipo){
     pEquipo = document.createElement("p");
-    //pEquipo.createElement("p");
     pEquipo.setAttribute("class","pEquipo");
     pEquipo.innerText=`${equipo.nombre}`;
     cajaEquiposVista2.append(pEquipo);
@@ -202,23 +105,22 @@ function ejecutarFiltros(){
   //filtro los partidos pasandole el id del equipo a buscar
   filtrarEquipos(keyupInput2());
  
-  const filtroResultado =  document.querySelector('input[name="resultado"]:checked').value
+  let filtroResultado =  document.querySelector('input[name="resultado"]:checked').value
   filtrarResultado({ id: keyupInput2(), resultadoFiltro: filtroResultado})
  
-  const filtroPosicion =  document.querySelector('input[name="posicion"]:checked').value
+  let filtroPosicion =  document.querySelector('input[name="posicion"]:checked').value
   filtrarPosicion({ id: keyupInput2(), posicion: filtroPosicion})
  
-  const filtroEstado =  document.querySelector('input[name="estado"]:checked').value
+  let filtroEstado =  document.querySelector('input[name="estado"]:checked').value
   if(filtroEstado !== 'Todos') filtrarEstado({ estado: filtroEstado })
  
   verPartidos2(arrayFiltro);
-  console.log(arrayFiltro)
+  //console.log(arrayFiltro)
 }
- 
+
 function filtrarEquipos(busqueda){
   //console.log(arrayPartidos);
    arrayFiltro = arrayPartidos.filter(function(partido){
-   //¿que ocurre si en el return le pongo una función que tenga return?
    return busqueda === partido.idEquipoLocal || busqueda === partido.idEquipoVisitante
  })
 }
@@ -276,7 +178,6 @@ function verPartidos2 (array){
  
     local.innerText = equipoLocal;
     local.setAttribute("class","text-end");
-    /* resultado.innerText = `${golesLocal} - ${golesVisitante}`;  */
     resultado.innerText = ((golesLocal||golesVisitante) == null)? "pendiente":`${golesLocal} - ${golesVisitante}`;
     resultado.setAttribute("class","text-center");
     visitante.innerText = equipoVisitante ;
