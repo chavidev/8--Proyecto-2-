@@ -1,105 +1,19 @@
-//pendiente de hacer click sobre el ele
-
-// aquí está la vista
-let verFiltros = document.querySelector("#filtros");
-let test = document.createElement("p")
-test.innerText = "test desde filtros";
-
-let inputEquipos = document.createElement("input");
-inputEquipos.setAttribute("placeholder","inserta el equipo aquí.....");
-inputEquipos.setAttribute("id","inputEquipos");
-//inputEquipos.setAttribute("onchange","buscaId()");
-inputEquipos.setAttribute("onkeyup","buscaId()");
-
-
-
-let botonBuscar = document.createElement("button");
-botonBuscar.innerText = "Buscar";
-//quiero hacerlo con una arrow function
-//botonEquipo.setAttribute("onclick","()=>console.log('Barsa')")
-botonBuscar.setAttribute("onclick","buscaId()");
-
-let cajaEquipos = document.createElement("div")
-cajaEquipos.setAttribute("id","cajaEquipos");
-//cajaEquipos.innerText("el listado de equipos dinámico va aquí")
-
-
-
-verFiltros.append(test, inputEquipos, botonBuscar, cajaEquipos);
-
-
-let cajaEquiposVista = document.querySelector("#cajaEquipos");
-// fin de la vista
-
-//###########################################
-
-//inicio del ¿Modelo? (la parte funcional,modelo no lo termino de entender)
-
-
 let arrayPartidos = [];
 crearFiltrosPartidos();
 //console.log(arrayPartidos);
 let arrayFiltro = [];
-filtrarEquipos("FC Barcelona")
-//console.log(arrayFiltro);
-filtrarResultado({equipo:"FC Barcelona",id:81 ,resultadoFiltro:"ganado"})
-//console.log(arrayFiltro);
+let variablesFiltro = {};
 //si se está jugando cómo es y cuantos estados mas existen ¿aplazado?
-filtrarEstado({equipo:"FC Barcelona",id:81 ,resultadoFiltro:"ganado",estado:"FINISHED"});
-//console.log(arrayFiltro);
-
+ 
 //estado:
 //pendiente==SCHEDULED
 //terminado==FINISHED
-//jugando==????
-
-function buscaId(){
-  let idEquipos = [
-    {id: 95, nombre: 'Valencia CF'},
-    {id: 82, nombre: 'Getafe CF'},
-    {id: 264, nombre: 'Cádiz CF'},
-    {id: 88, nombre: 'Levante UD'},
-    {id: 89, nombre: 'RCD Mallorca'},
-    {id: 90, nombre: 'Real Betis Balompié'},
-    {id: 79, nombre: 'CA Osasuna'},
-    {id: 80, nombre: 'RCD Espanyol de Barcelona'},
-    {id: 263, nombre: 'Deportivo Alavés'},
-    {id: 86, nombre: 'Real Madrid CF'},
-    {id: 558, nombre: 'RC Celta de Vigo'},
-    {id: 78, nombre: 'Club Atlético de Madrid'},
-    {id: 81, nombre: 'FC Barcelona'},
-    {id: 92, nombre: 'Real Sociedad de Fútbol'},
-    {id: 559, nombre: 'Sevilla FC'},
-    {id: 87, nombre: 'Rayo Vallecano de Madrid'},
-    {id: 94, nombre: 'Villarreal CF'},
-    {id: 83, nombre: 'Granada CF'},
-    {id: 285, nombre: 'Elche CF'},
-    {id: 77, nombre: 'Athletic Club'}
-  ];
-  let buscandoId = idEquipos.filter(function(equipo){
-    return eliminarMayusculasEspacioTilde (equipo.nombre).includes(eliminarMayusculasEspacioTilde (inputEquipos.value));
-  });
-  //console.log(buscandoId);
-  inyectandoCajaEquipos(buscandoId);
-  
-}
+//jugando==????  &&
 
 function eliminarMayusculasEspacioTilde (nombre){
   return nombre.toUpperCase().replace(/ /g, "").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
-
-function inyectandoCajaEquipos(buscandoId){
-  let pEquipo
-  cajaEquiposVista.innerText="";
-  buscandoId.forEach(function (equipo){
-    //console.log(equipo);
-    pEquipo = document.createElement("p");
-    pEquipo.setAttribute("class","pEquipo");
-    pEquipo.innerText=`${equipo.nombre}`;    
-    cajaEquiposVista.append(pEquipo);
-  })
-}
-
+ //&& eliminar ésta función
 function crearFiltrosPartidos(){
   //console.log(data.matches);
   //console.log("test desde crearFiltrosPartidos");
@@ -112,60 +26,30 @@ function crearFiltrosPartidos(){
     golesLocal = data.matches[i].score.fullTime.homeTeam;
     golesVisitante = data.matches[i].score.fullTime.awayTeam;
     estado = data.matches[i].status;
-    if(golesLocal>golesVisitante){
-      resultado = idEquipoLocal 
+    if(!golesLocal || !golesVisitante) {
+      resultado = null
+    }  
+    else {  
+      if(golesLocal===golesVisitante){
+        resultado = "empate"
+      }
+      if(golesLocal>golesVisitante){
+        resultado = idEquipoLocal
+      }
+      if(golesLocal<golesVisitante){  //ésta condición sale de la API
+        resultado = idEquipoVisitante
+      }
     }
-    if(golesLocal<golesVisitante){  //ésta condición sale de la API
-      resultado = idEquipoVisitante 
-    }
-    if(golesLocal===golesVisitante){
-      resultado = "empate" 
-    }
+   
     arrayPartidos.push({jornada,equipoLocal,idEquipoLocal,equipoVisitante,idEquipoVisitante,golesLocal,golesVisitante,estado,resultado})
   }
   //console.log(arrayPartidos);
 }
-//función antigua, ya la uso en otro lado
-function filtrarEquipos(busqueda){
-  //console.log(arrayPartidos);
- arrayFiltro = arrayPartidos.filter(function(partido){
-   //¿que ocurre si en el return le pongo una función que tenga return?
-   return busqueda === partido.equipoLocal || busqueda === partido.equipoVisitante
- })
-}
-
-function filtrarResultado({equipo,id,resultadoFiltro}){
-  arrayFiltro = arrayFiltro.filter(function(partido){
-    if (resultadoFiltro == "ganado"){
-      //console.log(`resultado:${partido.resultado} equipo:${equipo} id:${id} resultadoFiltro:${resultadoFiltro}`);
-      return id == partido.resultado
-    }
-    if (resultadoFiltro == "perdido"){
-      console.log("partido perdido");
-      return id == partido.resultado
-    }
-    if (resultadoFiltro == "empate"){
-      console.log("partido empatado");
-      return "empate" == partido.resultado
-    }
-  })
-}
-
-function filtrarEstado({equipo,id,resultadoFiltro,estado}){
-  arrayFiltro = arrayFiltro.filter(function(partido){    
-      //console.log("Estado partido"+ estado);
-      return estado === partido.estado    
-  })
-}
-
-
-
-
+ 
 let cajaEquiposVista2 = document.querySelector("#cajaEquiposVista2");
 let input2 = document.querySelector("#inputEquipos2");
-//input2.addEventListener("keyup",function (){keyupInput2()})
-//input2.addEventListener("keyup",keyupInput2)
 
+//&& pendiente de extraer la info desde una función 
 function keyupInput2(){
   //console.log(input2.value)
   let idEquipos = [
@@ -196,41 +80,88 @@ function keyupInput2(){
   inyectandoCajaEquipos2(buscandoId)
   return buscandoId[0].id
 }
-
+ 
 function inyectandoCajaEquipos2(buscandoId){
   let pEquipo
-  cajaEquiposVista2.innerText="";
-  buscandoId.forEach(function (equipo){
-    //console.log(equipo);
+    cajaEquiposVista2.innerText="";
+    buscandoId.forEach(function (equipo){
     pEquipo = document.createElement("p");
-    //pEquipo.createElement("p");
     pEquipo.setAttribute("class","pEquipo");
     pEquipo.innerText=`${equipo.nombre}`;
     cajaEquiposVista2.append(pEquipo);
   })
 }
-
+ 
 function ejecutarFiltros(){
   console.log("el id del equipo es:"+keyupInput2());
   //filtro los partidos pasandole el id del equipo a buscar
   filtrarEquipos(keyupInput2());
-  console.log(arrayFiltro);
-  verPartidos2 (arrayFiltro)
+ 
+  let filtroResultado =  document.querySelector('input[name="resultado"]:checked').value
+  filtrarResultado({ id: keyupInput2(), resultadoFiltro: filtroResultado})
+ 
+  let filtroPosicion =  document.querySelector('input[name="posicion"]:checked').value
+  filtrarPosicion({ id: keyupInput2(), posicion: filtroPosicion})
+ 
+  let filtroEstado =  document.querySelector('input[name="estado"]:checked').value
+  if(filtroEstado !== 'Todos') filtrarEstado({ estado: filtroEstado })
+ 
+  variablesFiltro = {id: keyupInput2(),resultadoFiltro: filtroResultado,posicion: filtroPosicion,estado: filtroEstado }
+  verPartidos2(arrayFiltro); //&&
+  //console.log(arrayFiltro)
+  cajaEquiposVista2.innerText = ""; //limpio la caja para evitar que me salga una lista muy larga
+  console.log("variablesFiltro:"+ JSON.stringify(variablesFiltro));
 }
 
 function filtrarEquipos(busqueda){
   //console.log(arrayPartidos);
- arrayFiltro = arrayPartidos.filter(function(partido){
-   //¿que ocurre si en el return le pongo una función que tenga return?
+   arrayFiltro = arrayPartidos.filter(function(partido){
    return busqueda === partido.idEquipoLocal || busqueda === partido.idEquipoVisitante
  })
 }
-
+ 
+function filtrarResultado({ id, resultadoFiltro }){
+  switch (resultadoFiltro) {
+    case "ganados":
+      arrayFiltro = arrayFiltro.filter((partido) => { if(id == partido.resultado) return partido })
+      break;
+    case "perdidos":
+      //&& si ganó el equipo contrario
+      arrayFiltro = arrayFiltro.filter((partido) => { if(id != partido.resultado && partido.resultado !== 'empate' && partido.resultado !== null ) return partido })
+      break;
+    case "empatados":
+      arrayFiltro = arrayFiltro.filter((partido) => { if('empate' == partido.resultado) return partido })
+      break;
+    default:
+      arrayFiltro = arrayFiltro
+      break;
+  }
+}
+ 
+function filtrarPosicion({ id, posicion }){
+  switch (posicion) {
+    case "casa":
+      arrayFiltro = arrayFiltro.filter((partido) => { if(id == partido.idEquipoLocal) return partido })
+      break;
+    case "visitante":
+      arrayFiltro = arrayFiltro.filter((partido) => { if(id == partido.idEquipoVisitante) return partido })
+      break;
+    default:
+      arrayFiltro = arrayFiltro
+      break;
+  }
+}
+ 
+function filtrarEstado({estado}){
+  arrayFiltro = arrayFiltro.filter(function(partido){    
+      return estado === partido.estado    
+  })
+}
+ 
 function verPartidos2 (array){
-  //console.log("verpartidos2");
   let partido , local, resultado, visitante, jornada , equipoLocal , idEquipoLocal , equipoVisitante , idEquipoVisitante;
   let partidos = document.querySelector("tbody");
-  partidos.innerText = "";
+  partidos.innerHTML = ''
   for (i=0 ; i<array.length ; i++ ){
     jornada = array[i].jornada;
     equipoLocal = array[i].equipoLocal;
@@ -239,25 +170,24 @@ function verPartidos2 (array){
     idEquipoVisitante = array[i].idEquipoVisitante;
     golesLocal = array[i].golesLocal;
     golesVisitante = array[i].golesVisitante
-    
+   
     partido = document.createElement("tr");
     local = document.createElement("td");
     imgLocal = document.createElement("td");
     resultado = document.createElement("td");
     visitante = document.createElement("td");
     imgVisitante = document.createElement("td");
-
+ 
     local.innerText = equipoLocal;
     local.setAttribute("class","text-end");
-    /* resultado.innerText = `${golesLocal} - ${golesVisitante}`;  */
     resultado.innerText = ((golesLocal||golesVisitante) == null)? "pendiente":`${golesLocal} - ${golesVisitante}`;
     resultado.setAttribute("class","text-center");
     visitante.innerText = equipoVisitante ;
     visitante.setAttribute("class","text-start");
-
+ 
     imgEquipo(imgLocal, idEquipoLocal);
     imgEquipo(imgVisitante, idEquipoVisitante);
-  
+ 
     partido.append(local , imgLocal, resultado, imgVisitante, visitante);
     partidos.append(partido);
   }
