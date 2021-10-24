@@ -1,6 +1,26 @@
-verClasificacion()
+ //&&&&
+ //tengo que meterla en api.js pese a que no sea el mejor nombre, y poderla reutilizar
+ //pasandole los parámetros
+  // mathces, shedules, o lo que sea
+  // url
+  // key
+async function getData() {
+  try {
+    let cargando_spinner = document.querySelector("#cargando");
+    cargando_spinner.innerHTML = cargando
+    const res = await fetch(`${API}/standings?=${API_KEY}`, {
+        method: 'GET',
+        headers: new Headers({'X-Auth-Token': API_KEY }),
+    });
+    const data = await res.json()
+    cargando_spinner.innerHTML = ''
+    verClasificacion(data)
+  } catch (error) {
+    console.log(error)
+  }
+}
  
-function verClasificacion(){
+function verClasificacion(dataClasificacion){
   for(let i = 0 ;i<dataClasificacion.standings[0].table.length;i++){
     let arrayTd , posicion , teamName , teamId , teamLogo , partidosJugados , victorias , empates , derrotas , golesFaborables , golesContra , golesDiferencia , puntos;
     posicion = dataClasificacion.standings[0].table[i].position;
@@ -45,3 +65,11 @@ function inyectarTd(arrayTd){
     clasificacion.append(trClasificacion);   
   }
 }
+ //&&&&
+ //tengo que meterla en api.js pese a que no sea el mejor nombre, y poderla reutilizar
+ // y llamarla desde aquí
+ //pasandole los parámetros
+  // mathces, shedules, o lo que sea
+  // url(¿interno en la función?)
+  // key(¿interno en la función?)
+getData()

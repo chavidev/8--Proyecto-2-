@@ -78,7 +78,7 @@ function keyupInput2(){
     return eliminarMayusculasEspacioTilde (equipo.nombre).includes(eliminarMayusculasEspacioTilde (input2.value));
   });
   inyectandoCajaEquipos2(buscandoId)
-  return buscandoId[0].id
+  return buscandoId[0]
 }
  
 function inyectandoCajaEquipos2(buscandoId){
@@ -93,24 +93,27 @@ function inyectandoCajaEquipos2(buscandoId){
 }
  
 function ejecutarFiltros(){
-  console.log("el id del equipo es:"+keyupInput2());
+  const { id, nombre } = keyupInput2()
+  console.log("el id del equipo es:"+id);
   //filtro los partidos pasandole el id del equipo a buscar
-  filtrarEquipos(keyupInput2());
+  filtrarEquipos(id);
  
   let filtroResultado =  document.querySelector('input[name="resultado"]:checked').value
-  filtrarResultado({ id: keyupInput2(), resultadoFiltro: filtroResultado})
+  filtrarResultado({ id: id, resultadoFiltro: filtroResultado})
  
   let filtroPosicion =  document.querySelector('input[name="posicion"]:checked').value
-  filtrarPosicion({ id: keyupInput2(), posicion: filtroPosicion})
+  filtrarPosicion({ id: id, posicion: filtroPosicion})
  
   let filtroEstado =  document.querySelector('input[name="estado"]:checked').value
   if(filtroEstado !== 'Todos') filtrarEstado({ estado: filtroEstado })
  
-  variablesFiltro = {id: keyupInput2(),resultadoFiltro: filtroResultado,posicion: filtroPosicion,estado: filtroEstado }
+  variablesFiltro = {id: id,resultadoFiltro: filtroResultado,posicion: filtroPosicion,estado: filtroEstado }
   verPartidos(arrayFiltro); //&&
   //console.log(arrayFiltro)
   cajaEquiposVista2.innerText = ""; //limpio la caja para evitar que me salga una lista muy larga
   console.log("variablesFiltro:"+ JSON.stringify(variablesFiltro));
+ 
+  document.querySelector('#inputEquipos2').value = nombre
 }
 
 function filtrarEquipos(busqueda){

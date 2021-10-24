@@ -18,11 +18,17 @@
     </nav>
   </header>
   <main class="mt-5 pt-5">
-    <input id="inputEquipos2" placeholder="escribe aquí lo que quieras" onkeyup="keyupInput2()"> <!-- _onkeyup="keyupInput2()"" -->  
-    <button onclick="ejecutarFiltros()">Buscar</button>    
-    <div id="cajaEquiposVista2"></div>
-    
-    <div class="d-flex">
+    <div class="row g-3">
+      <div class="col-auto">
+        <input class="form-control col-2" id="inputEquipos2" placeholder="escribe aquí lo que quieras" onkeyup="keyupInput2()"> <!-- _onkeyup="keyupInput2()"" -->  
+        <div id="cajaEquiposVista2" class="position-fixed bg-dark text-white rounded-3"></div>
+      </div>
+      <div class="col-auto">
+        <button onclick="ejecutarFiltros()" class="btn btn-primary">Buscar</button>    
+      </div>
+    </div>
+   
+    <div class="d-flex justify-content-end">
         <div class="mr-10">
             <p>Resultado: </p>
             <div class="form-check">
