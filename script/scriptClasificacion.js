@@ -7,7 +7,7 @@
 async function getData() {
   try {
     let cargando_spinner = document.querySelector("#cargando");
-    cargando_spinner.innerHTML = cargando
+    cargando_spinner.innerHTML = spinner;
     const res = await fetch(`${API}/standings?=${API_KEY}`, {
         method: 'GET',
         headers: new Headers({'X-Auth-Token': API_KEY }),
