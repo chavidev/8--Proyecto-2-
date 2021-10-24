@@ -12,13 +12,13 @@ function verPartidos (array){
   for (i=0 ; i<array.length ; i++ ){
     //console.log(array[i].awayTeam.name)
     //&& dejalo como está
-    jornada = typeof array[i].matchday === undefined ? array[i].jornada : array[i].matchday;
-    equipoLocal = typeof array[i].homeTeam === undefined ? array[i].equipoLocal : array[i].homeTeam.name;
-    idEquipoLocal = typeof array[i].homeTeam === undefined ? array[i].idEquipoLocal : array[i].homeTeam.id;
-    equipoVisitante = typeof array[i].awayTeam === undefined ? array[i].equipoVisitante : array[i].awayTeam.name;
-    idEquipoVisitante = typeof array[i].awayTeam === undefined ? array[i].idEquipoVisitante : array[i].awayTeam.id;
-    golesLocal = typeof array[i].score === undefined ? array[i].golesLocal : array[i].score.fullTime.homeTeam;
-    golesVisitante = typeof array[i].score === undefined ? array[i].golesVisitante : array[i].score.fullTime.awayTeam;
+    jornada = !array[i].matchday  ? array[i].jornada : array[i].matchday;
+    equipoLocal = !array[i].homeTeam  ? array[i].equipoLocal : array[i].homeTeam.name;
+    idEquipoLocal =  !array[i].homeTeam  ? array[i].idEquipoLocal : array[i].homeTeam.id;
+    equipoVisitante =  !array[i].awayTeam  ? array[i].equipoVisitante : array[i].awayTeam.name;
+    idEquipoVisitante = ! array[i].awayTeam  ? array[i].idEquipoVisitante : array[i].awayTeam.id;
+    golesLocal =  !array[i].score  ? array[i].golesLocal : array[i].score.fullTime.homeTeam;
+    golesVisitante =  !array[i].score  ? array[i].golesVisitante : array[i].score.fullTime.awayTeam;
     
     partido = document.createElement("tr");
     local = document.createElement("td");

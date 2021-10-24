@@ -107,7 +107,7 @@ function ejecutarFiltros(){
   if(filtroEstado !== 'Todos') filtrarEstado({ estado: filtroEstado })
  
   variablesFiltro = {id: keyupInput2(),resultadoFiltro: filtroResultado,posicion: filtroPosicion,estado: filtroEstado }
-  verPartidos2(arrayFiltro); //&&
+  verPartidos(arrayFiltro); //&&
   //console.log(arrayFiltro)
   cajaEquiposVista2.innerText = ""; //limpio la caja para evitar que me salga una lista muy larga
   console.log("variablesFiltro:"+ JSON.stringify(variablesFiltro));
@@ -156,39 +156,4 @@ function filtrarEstado({estado}){
   arrayFiltro = arrayFiltro.filter(function(partido){    
       return estado === partido.estado    
   })
-}
- 
-function verPartidos2 (array){
-  let partido , local, resultado, visitante, jornada , equipoLocal , idEquipoLocal , equipoVisitante , idEquipoVisitante;
-  let partidos = document.querySelector("tbody");
-  partidos.innerHTML = ''
-  for (i=0 ; i<array.length ; i++ ){
-    jornada = array[i].jornada;
-    equipoLocal = array[i].equipoLocal;
-    idEquipoLocal = array[i].idEquipoLocal;
-    equipoVisitante = array[i].equipoVisitante;
-    idEquipoVisitante = array[i].idEquipoVisitante;
-    golesLocal = array[i].golesLocal;
-    golesVisitante = array[i].golesVisitante
-   
-    partido = document.createElement("tr");
-    local = document.createElement("td");
-    imgLocal = document.createElement("td");
-    resultado = document.createElement("td");
-    visitante = document.createElement("td");
-    imgVisitante = document.createElement("td");
- 
-    local.innerText = equipoLocal;
-    local.setAttribute("class","text-end");
-    resultado.innerText = ((golesLocal||golesVisitante) == null)? "pendiente":`${golesLocal} - ${golesVisitante}`;
-    resultado.setAttribute("class","text-center");
-    visitante.innerText = equipoVisitante ;
-    visitante.setAttribute("class","text-start");
- 
-    imgEquipo(imgLocal, idEquipoLocal);
-    imgEquipo(imgVisitante, idEquipoVisitante);
- 
-    partido.append(local , imgLocal, resultado, imgVisitante, visitante);
-    partidos.append(partido);
-  }
 }
