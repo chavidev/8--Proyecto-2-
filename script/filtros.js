@@ -1,20 +1,29 @@
+//   ####   ¿Arquitectura?   ####
+
+// crearFiltroPartidos()
+
+// ejecutarFiltros()
+//      <- KeyupInput2
+//        <-eliminarMayúsculas y minúsculas
+//      =>inyectarCajaEquipos
+
+//      ->filtrosEquipos
+//      ->filtroResultados
+//      ->filtrarPosición
+//      ->filtrarEstado
+//      => verPartidos
+
 let arrayPartidos = [];
-//&& ésta función no la tengo porqué ejecutar
-//crearFiltrosPartidos();
-//console.log(arrayPartidos);
 let arrayFiltro = [];
 let variablesFiltro = {};
-//si se está jugando cómo es y cuantos estados mas existen ¿aplazado?
- 
+
+//si se está jugando cómo es y cuantos estados mas existen ¿aplazado? 
 //estado:
 //pendiente==SCHEDULED
 //terminado==FINISHED
 //jugando==????  &&
 
-function eliminarMayusculasEspacioTilde (nombre){
-  return nombre.toUpperCase().replace(/ /g, "").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-}
- //&& eliminar ésta función
+ // 
 function crearFiltrosPartidos(data){
   console.log(data.matches);
   //console.log("test desde crearFiltrosPartidos");
@@ -45,8 +54,7 @@ function crearFiltrosPartidos(data){
     arrayPartidos.push({jornada,equipoLocal,idEquipoLocal,equipoVisitante,idEquipoVisitante,golesLocal,golesVisitante,estado,resultado})
   }
   //console.log(arrayPartidos);
-}
- 
+} 
 let cajaEquiposVista2 = document.querySelector("#cajaEquiposVista2");
 let input2 = document.querySelector("#inputEquipos2");
 
@@ -54,6 +62,7 @@ let input2 = document.querySelector("#inputEquipos2");
 function keyupInput2(){
   //console.log(input2.value)
   let idEquipos = [
+    {id: 0, nombre: 'Todos'},
     {id: 95, nombre: 'Valencia CF'},
     {id: 82, nombre: 'Getafe CF'},
     {id: 264, nombre: 'Cádiz CF'},
@@ -81,7 +90,9 @@ function keyupInput2(){
   inyectandoCajaEquipos2(buscandoId)
   return buscandoId[0]
 }
- 
+function eliminarMayusculasEspacioTilde (nombre){
+  return nombre.toUpperCase().replace(/ /g, "").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
 function inyectandoCajaEquipos2(buscandoId){
   let pEquipo
     cajaEquiposVista2.innerText="";
@@ -116,14 +127,12 @@ function ejecutarFiltros(){
  
   document.querySelector('#inputEquipos2').value = nombre
 }
-
 function filtrarEquipos(busqueda){
   //console.log(arrayPartidos);
    arrayFiltro = arrayPartidos.filter(function(partido){
    return busqueda === partido.idEquipoLocal || busqueda === partido.idEquipoVisitante
  })
-}
- 
+} 
 function filtrarResultado({ id, resultadoFiltro }){
   switch (resultadoFiltro) {
     case "ganados":
@@ -141,7 +150,6 @@ function filtrarResultado({ id, resultadoFiltro }){
       break;
   }
 }
- 
 function filtrarPosicion({ id, posicion }){
   switch (posicion) {
     case "casa":
