@@ -57,6 +57,30 @@ function crearFiltrosPartidos(data){
 } 
 let cajaEquiposVista2 = document.querySelector("#cajaEquiposVista2");
 let input2 = document.querySelector("#inputEquipos2");
+ 
+function ejecutarFiltros(){
+  const { id, nombre } = keyupInput2()
+  console.log("el id del equipo es:"+id);
+  //filtro los partidos pasandole el id del equipo a buscar
+  filtrarEquipos(id);
+ 
+  let filtroResultado =  document.querySelector('input[name="resultado"]:checked').value
+  filtrarResultado({ id: id, resultadoFiltro: filtroResultado})
+ 
+  let filtroPosicion =  document.querySelector('input[name="posicion"]:checked').value
+  filtrarPosicion({ id: id, posicion: filtroPosicion})
+ 
+  let filtroEstado =  document.querySelector('input[name="estado"]:checked').value
+  if(filtroEstado !== 'Todos') filtrarEstado({ estado: filtroEstado })
+ 
+  variablesFiltro = {id: id,resultadoFiltro: filtroResultado,posicion: filtroPosicion,estado: filtroEstado }
+  verPartidos(arrayFiltro); //&&
+  //console.log(arrayFiltro)
+  cajaEquiposVista2.innerText = ""; //limpio la caja para evitar que me salga una lista muy larga
+  console.log("variablesFiltro:"+ JSON.stringify(variablesFiltro));
+ 
+  document.querySelector('#inputEquipos2').value = nombre
+}
 
 //&& pendiente de extraer la info desde una función 
 function keyupInput2(){
@@ -103,30 +127,8 @@ function inyectandoCajaEquipos2(buscandoId){
     cajaEquiposVista2.append(pEquipo);
   })
 }
- 
-function ejecutarFiltros(){
-  const { id, nombre } = keyupInput2()
-  console.log("el id del equipo es:"+id);
-  //filtro los partidos pasandole el id del equipo a buscar
-  filtrarEquipos(id);
- 
-  let filtroResultado =  document.querySelector('input[name="resultado"]:checked').value
-  filtrarResultado({ id: id, resultadoFiltro: filtroResultado})
- 
-  let filtroPosicion =  document.querySelector('input[name="posicion"]:checked').value
-  filtrarPosicion({ id: id, posicion: filtroPosicion})
- 
-  let filtroEstado =  document.querySelector('input[name="estado"]:checked').value
-  if(filtroEstado !== 'Todos') filtrarEstado({ estado: filtroEstado })
- 
-  variablesFiltro = {id: id,resultadoFiltro: filtroResultado,posicion: filtroPosicion,estado: filtroEstado }
-  verPartidos(arrayFiltro); //&&
-  //console.log(arrayFiltro)
-  cajaEquiposVista2.innerText = ""; //limpio la caja para evitar que me salga una lista muy larga
-  console.log("variablesFiltro:"+ JSON.stringify(variablesFiltro));
- 
-  document.querySelector('#inputEquipos2').value = nombre
-}
+
+
 function filtrarEquipos(busqueda){
   //console.log(arrayPartidos);
    arrayFiltro = arrayPartidos.filter(function(partido){
@@ -163,7 +165,6 @@ function filtrarPosicion({ id, posicion }){
       break;
   }
 }
- 
 function filtrarEstado({estado}){
   arrayFiltro = arrayFiltro.filter(function(partido){    
       return estado === partido.estado    
