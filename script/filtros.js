@@ -2,7 +2,7 @@
 
 // crearFiltroPartidos()
 
-// ejecutarFiltros()
+// ejecutarFiltros() //lo llamo desde el botón buscar
 //      <- KeyupInput2
 //        <-eliminarMayúsculas y minúsculas
 //      =>inyectarCajaEquipos
@@ -86,7 +86,7 @@ function ejecutarFiltros(){
 function keyupInput2(){
   //console.log(input2.value)
   let idEquipos = [
-    {id: 0, nombre: 'Todos'},
+    {id: 0, nombre: 'Todos los Equipos'},
     {id: 95, nombre: 'Valencia CF'},
     {id: 82, nombre: 'Getafe CF'},
     {id: 264, nombre: 'Cádiz CF'},
@@ -128,9 +128,15 @@ function inyectandoCajaEquipos2(buscandoId){
   })
 }
 
-
+// el término busqueda ha de llamarse id
 function filtrarEquipos(busqueda){
   //console.log(arrayPartidos);
+  console.log("busqueda: "+busqueda);
+  if (busqueda === 0){
+    arrayFiltro = arrayPartidos
+    return
+  }
+  //&& es probable que aquí tenga que hacer una cópia  con from
    arrayFiltro = arrayPartidos.filter(function(partido){
    return busqueda === partido.idEquipoLocal || busqueda === partido.idEquipoVisitante
  })
