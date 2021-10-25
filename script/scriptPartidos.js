@@ -1,6 +1,10 @@
-crearFiltrosPartidos();//desde aquí tendré que llamar a verPartidos
-verPartidos(data.matches);
-
+(async function(){
+  let data = await getData({endPoint:"matches"})
+  //¿formas de evitar el object object sin streingify?
+  //console.log("data: "+data); 
+  crearFiltrosPartidos(data); //lo tengo en filtros
+  verPartidos(data.matches);
+})()
 
 // si el primero es undefined, coge el segundo
 // && no consigo hacerlo funcionar para la llamada desde el filtro

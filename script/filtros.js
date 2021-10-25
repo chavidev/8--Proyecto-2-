@@ -1,5 +1,6 @@
 let arrayPartidos = [];
-crearFiltrosPartidos();
+//&& ésta función no la tengo porqué ejecutar
+//crearFiltrosPartidos();
 //console.log(arrayPartidos);
 let arrayFiltro = [];
 let variablesFiltro = {};
@@ -14,8 +15,8 @@ function eliminarMayusculasEspacioTilde (nombre){
   return nombre.toUpperCase().replace(/ /g, "").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
  //&& eliminar ésta función
-function crearFiltrosPartidos(){
-  //console.log(data.matches);
+function crearFiltrosPartidos(data){
+  console.log(data.matches);
   //console.log("test desde crearFiltrosPartidos");
   for (i=0 ; i<data.matches.length ; i++ ){
     jornada = data.matches[i].matchday;
