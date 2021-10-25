@@ -1,5 +1,4 @@
-contarGoles (data.matches);
-/* 
+/*         ##### Arquitectura #####
 contargoles(data.maches)=>
     recorrerArrayGoles(Obj, arrayGoles)    
     calcularAvg (arrayGoles)  
@@ -20,6 +19,13 @@ contargoles(data.maches)=>
   avg:
 } 
 */
+
+//aquí activo los partidos para generar las estadísticas
+(async function(){
+  let data = await getData({endPoint:"matches"})
+  contarGoles (data.matches);
+})()
+
 function contarGoles (datos){ //datos = data.maches 
   let arrayGoles = []; 
   for(let i=0 ; i<datos.length ;i++){
@@ -120,6 +126,7 @@ function crearTablaAvg (array){
     tablaAvg.append(trAvg);
   }
 }
+
 function ordenarGolesRecibidosFuera (array){
   let arrayGolesRecibidosFuera = Array.from(array)
   arrayGolesRecibidosFuera.sort(function (a, b) {
