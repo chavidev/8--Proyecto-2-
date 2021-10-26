@@ -8,10 +8,22 @@
 
 // si el primero es undefined, coge el segundo
 // && no consigo hacerlo funcionar para la llamada desde el filtro
-function verPartidos (array){
+function verPartidos (array){  
   //console.log("data.matches"+JSON.stringify(data.matches))
   let partido , local, resultado, visitante, jornada , equipoLocal , idEquipoLocal , equipoVisitante , idEquipoVisitante;
   let partidos = document.querySelector("tbody");
+  if (array.length === 0){
+    partidos.innerText = `El ${variablesFiltro.nombre} no tiene partidos
+    ${variablesFiltro.resultadoFiltro !=="todos"?variablesFiltro.resultadoFiltro:""}
+    ${variablesFiltro.posicion !=="Todos" ?  " en " : ""}  
+    ${variablesFiltro.posicion !=="Todos" ?  variablesFiltro.posicion : ""}
+    `;
+    //quiero unificar las líneas 18 y 19
+    console.log("entró en el if de no hay partidos");
+    //variablesFiltro: {"id":82,"resultadoFiltro":"ganados","posicion":"Todos","estado":"Todos","nombre":"Getafe CF","nombreError":"Getafe CF"}
+    console.log("no hay partidos => variablesFiltro= "+JSON.stringify(variablesFiltro));
+    return    
+  }
   partidos.innerText = "";
   for (i=0 ; i<array.length ; i++ ){
     //console.log(array[i].awayTeam.name)

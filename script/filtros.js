@@ -1,3 +1,4 @@
+//console.log("variablesFiltro:"+ JSON.stringify(variablesFiltro));
 //   ####   ¿Arquitectura?   ####
 
 // crearFiltroPartidos()
@@ -25,7 +26,7 @@ let variablesFiltro = {};
 
  // 
 function crearFiltrosPartidos(data){
-  console.log(data.matches);
+  //console.log(data.matches);
   //console.log("test desde crearFiltrosPartidos");
   for (i=0 ; i<data.matches.length ; i++ ){
     jornada = data.matches[i].matchday;
@@ -36,9 +37,13 @@ function crearFiltrosPartidos(data){
     golesLocal = data.matches[i].score.fullTime.homeTeam;
     golesVisitante = data.matches[i].score.fullTime.awayTeam;
     estado = data.matches[i].status;
+/* 
     if(!golesLocal || !golesVisitante) {
       resultado = null
-    }  
+    } */
+    if(golesLocal === null || golesVisitante === null) {
+      resultado = null
+    }
     else {  
       if(golesLocal===golesVisitante){
         resultado = "empate"
@@ -56,15 +61,20 @@ function crearFiltrosPartidos(data){
   //console.log(arrayPartidos);
 } 
 let cajaEquiposVista2 = document.querySelector("#cajaEquiposVista2");
+let errorInput = document.querySelector("#errorInput");
 let input2 = document.querySelector("#inputEquipos2");
- 
+
+//llamado desde el botón BUSCAR
 function ejecutarFiltros(){
+  //let nombreError = Array.from(input2.value); //no se si es necesario, pero hago from por si acaso
+  let nombreError = input2.value;
   const { id, nombre } = keyupInput2()
   console.log("el id del equipo es:"+id);
   //filtro los partidos pasandole el id del equipo a buscar
   filtrarEquipos(id);
  
   let filtroResultado =  document.querySelector('input[name="resultado"]:checked').value
+  //console.log("filtroResultado.value: "+filtroResultado.value);
   filtrarResultado({ id: id, resultadoFiltro: filtroResultado})
  
   let filtroPosicion =  document.querySelector('input[name="posicion"]:checked').value
@@ -73,18 +83,22 @@ function ejecutarFiltros(){
   let filtroEstado =  document.querySelector('input[name="estado"]:checked').value
   if(filtroEstado !== 'Todos') filtrarEstado({ estado: filtroEstado })
  
-  variablesFiltro = {id: id,resultadoFiltro: filtroResultado,posicion: filtroPosicion,estado: filtroEstado }
+  variablesFiltro = {id: id,resultadoFiltro: filtroResultado,posicion: filtroPosicion,estado: filtroEstado, nombre: nombre, nombreError: nombreError }
   verPartidos(arrayFiltro); //&&
   //console.log(arrayFiltro)
   cajaEquiposVista2.innerText = ""; //limpio la caja para evitar que me salga una lista muy larga
-  console.log("variablesFiltro:"+ JSON.stringify(variablesFiltro));
+  //console.log("variablesFiltro:"+ JSON.stringify(variablesFiltro));
  
-  document.querySelector('#inputEquipos2').value = nombre
+  document.querySelector('#inputEquipos2').value = nombre;
+  console.log("nombreError: "+nombreError);
+  errorInput.innerText = keyupInput2().err ? (`Ups no hay equipos que contengan: ${nombreError}`):""
 }
 
 //&& pendiente de extraer la info desde una función 
 function keyupInput2(){
   //console.log(input2.value)
+  //&& crear función
+  let errorEquipo = {id: 0, nombre: 'inserta un nombre válido', err:true}
   let idEquipos = [
     {id: 0, nombre: 'Todos los Equipos'},
     {id: 95, nombre: 'Valencia CF'},
@@ -112,13 +126,15 @@ function keyupInput2(){
     return eliminarMayusculasEspacioTilde (equipo.nombre).includes(eliminarMayusculasEspacioTilde (input2.value));
   });
   inyectandoCajaEquipos2(buscandoId)
-  return buscandoId[0]
+  //cajaEquiposVista2.innerText="Ups, con éste nombre no encontré nada"
+  return buscandoId[0]?buscandoId[0]:errorEquipo
 }
 function eliminarMayusculasEspacioTilde (nombre){
   return nombre.toUpperCase().replace(/ /g, "").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 function inyectandoCajaEquipos2(buscandoId){
   let pEquipo
+    errorInput.innerText=""; //limpio el error si existiese
     cajaEquiposVista2.innerText="";
     buscandoId.forEach(function (equipo){
     pEquipo = document.createElement("p");
@@ -129,22 +145,28 @@ function inyectandoCajaEquipos2(buscandoId){
 }
 
 // el término busqueda ha de llamarse id
-function filtrarEquipos(busqueda){
+function filtrarEquipos(id){
   //console.log(arrayPartidos);
-  console.log("busqueda: "+busqueda);
-  if (busqueda === 0){
+  //console.log("id: "+id);
+  if (id === 0){
     arrayFiltro = arrayPartidos
     return
   }
   //&& es probable que aquí tenga que hacer una cópia  con from
    arrayFiltro = arrayPartidos.filter(function(partido){
-   return busqueda === partido.idEquipoLocal || busqueda === partido.idEquipoVisitante
+   return id === partido.idEquipoLocal || id === partido.idEquipoVisitante
  })
 } 
 function filtrarResultado({ id, resultadoFiltro }){
   switch (resultadoFiltro) {
     case "ganados":
-      arrayFiltro = arrayFiltro.filter((partido) => { if(id == partido.resultado) return partido })
+      console.log("antes de ejecutar el filtro");
+      console.log("resultadoFiltro: "+ resultadoFiltro);
+      arrayFiltro = arrayFiltro.filter((partido) => {
+        //console.log("partido: " + JSON.stringify(partido));
+        //if(id === partido.resultado) 
+        return id == partido.resultado })
+        //return partido })
       break;
     case "perdidos":
       //&& si ganó el equipo contrario
@@ -158,6 +180,8 @@ function filtrarResultado({ id, resultadoFiltro }){
       break;
   }
 }
+
+
 function filtrarPosicion({ id, posicion }){
   switch (posicion) {
     case "casa":
