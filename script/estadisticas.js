@@ -1,13 +1,3 @@
-/*         ##### Arquitectura #####
-contargoles(data.maches)=>
-    recorrerArrayGoles(Obj, arrayGoles)    
-    calcularAvg (arrayGoles)  
-    ordenarAvg(arrayGoles)=>
-      crearTablaAvg
-
-    ordenarGolesRecibidosFuera (arrayGoles)=>
-      crearTablaGoleados (array)
-*/
 /*
 {
   id:
@@ -20,11 +10,16 @@ contargoles(data.maches)=>
 } 
 */
 
-//aquí activo los partidos para generar las estadísticas
-(async function(){
-  let data = await getData({endPoint:"matches"})
-  contarGoles (data.matches);
-})()
+/*         ##### Arquitectura #####
+contargoles(data.maches)=>
+    recorrerArrayGoles(Obj, arrayGoles)    
+    calcularAvg (arrayGoles)  
+    ordenarAvg(arrayGoles)=>
+      crearTablaAvg
+
+    ordenarGolesRecibidosFuera (arrayGoles)=>
+      crearTablaGoleados (array)
+*/
 
 function contarGoles (datos){ //datos = data.maches 
   let arrayGoles = []; 
@@ -55,10 +50,8 @@ function contarGoles (datos){ //datos = data.maches
       },arrayGoles);
     }    
   }
-  calcularAvg (arrayGoles);  
-  ordenarAvg(arrayGoles);
-  ordenarGolesRecibidosFuera (arrayGoles);
-  console.log(arrayGoles)
+  //console.log(arrayGoles)
+  return arrayGoles
 }
 function recorrerArrayGoles(Obj,array){
   for (let j = 0; j < array.length ; j++){
@@ -98,7 +91,8 @@ function ordenarAvg (array){
     return 0;
   });
   //console.log(arrayAvg)
-  crearTablaAvg(arrayAvg);
+  //crearTablaAvg(arrayAvg);
+  return arrayAvg
   
 }
 function crearTablaAvg (array){
@@ -136,10 +130,11 @@ function ordenarGolesRecibidosFuera (array){
     }
     return 0;
   });
-  crearTablaGoleados (arrayGolesRecibidosFuera);
+  //crearTablaGoleados (arrayGolesRecibidosFuera);
   //console.log(arrayGolesRecibidosFuera);
+  return arrayGolesRecibidosFuera
 }
-function crearTablaGoleados (array) { 
+function crearTablaGoleados (array) {
   let tablaGoleados = document.querySelector("#tabla_goleados"); //"tbody"
   for(i=0;i<5;i++){  //no hay forma de romper el foreach, el return no hace caso y el break rebienta el código
   //array.forEach((equipo,i) =>{ arrayGolesRecibidosFuera[i]  //&& romper con return o brake

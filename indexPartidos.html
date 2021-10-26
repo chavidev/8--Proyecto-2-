@@ -62,15 +62,6 @@
               <label class="form-check-label" for="radioJugando">Jugando  </label>
             </div>
         </div>
- <!-- 
-        <div class="ml-10">
-          <p>Estado: </p>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="estado" id="radioTodosEstado" checked value="Todos" onclick="ejecutarFiltros()">
-            <label class="form-check-label" for="radioTodosEstado">Todos</label>
-          </div>
-        </div>
- -->
 
         <div class="ml-10">
           <p>Ubicación: </p>
@@ -117,15 +108,12 @@
     </table> 
     <div id="cargando" class="d-flex justify-content-center mt-10" >
     </div>
-  </main>
- <!-- 
-  <script src="./dataPartidos.js"></script> -->
- 
+  </main> 
 
   <script src="./script/api.js"></script>
   <script src="./script/spinner.js"></script>
 
-
+  <script src="./script/estadisticas.js"></script><!-- reutilizo la función contar goles para obtener el nombre de los equipos del input -->
   <script src="./script/filtros.js"></script>
   <script src="./script/scriptPartidos.js"></script>
 </body>
