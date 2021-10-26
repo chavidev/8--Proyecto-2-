@@ -180,8 +180,10 @@ function filtrarResultado({ id, resultadoFiltro }){
       arrayFiltro = arrayFiltro.filter((partido) => { if('SCHEDULED' == partido.estado) return partido })
       break;
     case "jugando":
-      console.log("Ten en cuenta los estados cuando está jugando => partido.estado: "+partido.estado);
-      arrayFiltro = arrayFiltro.filter((partido) => { if('jugando' == partido.estado) return partido })
+      arrayFiltro = arrayFiltro.filter((partido) => {
+        console.log(`Ten en cuenta los estados cuando está jugando  partido.estado:  ${partido.estado}`); 
+        if( 'LIVE' === partido.estado)  return true 
+      })
       break;
 
     default:
