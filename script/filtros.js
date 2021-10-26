@@ -80,10 +80,7 @@ function ejecutarFiltros(){
   let filtroPosicion =  document.querySelector('input[name="posicion"]:checked').value
   filtrarPosicion({ id: id, posicion: filtroPosicion})
  
-  let filtroEstado =  document.querySelector('input[name="estado"]:checked').value
-  if(filtroEstado !== 'Todos') filtrarEstado({ estado: filtroEstado })
- 
-  variablesFiltro = {id: id,resultadoFiltro: filtroResultado,posicion: filtroPosicion,estado: filtroEstado, nombre: nombre, nombreError: nombreError }
+  variablesFiltro = {id: id,resultadoFiltro: filtroResultado,posicion: filtroPosicion, nombre: nombre, nombreError: nombreError }
   verPartidos(arrayFiltro); //&&
   //console.log(arrayFiltro)
   cajaEquiposVista2.innerText = ""; //limpio la caja para evitar que me salga una lista muy larga
@@ -175,11 +172,37 @@ function filtrarResultado({ id, resultadoFiltro }){
     case "empatados":
       arrayFiltro = arrayFiltro.filter((partido) => { if('empate' == partido.resultado) return partido })
       break;
+    
+    case "FINISHED":
+      arrayFiltro = arrayFiltro.filter((partido) => { if('FINISHED' == partido.estado) return partido })
+      break;
+    case "SCHEDULED":
+      arrayFiltro = arrayFiltro.filter((partido) => { if('SCHEDULED' == partido.estado) return partido })
+      break;
+    case "jugando":
+      console.log("Ten en cuenta los estados cuando está jugando => partido.estado: "+partido.estado);
+      arrayFiltro = arrayFiltro.filter((partido) => { if('jugando' == partido.estado) return partido })
+      break;
+
     default:
       arrayFiltro = arrayFiltro
       break;
   }
 }
+
+
+/* ésta función me gustó, y en lugar de romperla, quería transformar filtrar resultado en ésta */
+/* 
+function filtrarEstado({estado}){
+  arrayFiltro = arrayFiltro.filter(function(partido){    
+      return estado === partido.estado    
+  })
+}
+ */
+
+
+
+
 
 
 function filtrarPosicion({ id, posicion }){
@@ -194,9 +217,4 @@ function filtrarPosicion({ id, posicion }){
       arrayFiltro = arrayFiltro
       break;
   }
-}
-function filtrarEstado({estado}){
-  arrayFiltro = arrayFiltro.filter(function(partido){    
-      return estado === partido.estado    
-  })
 }

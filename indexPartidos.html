@@ -48,29 +48,32 @@
               <input class="form-check-input" type="radio" name="resultado" id="radioPerdido" value="perdidos" onclick="ejecutarFiltros()">
               <label class="form-check-label" for="radioPerdido">Perdidos</label>
             </div>
+            
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="resultado" id="radioTerminado" value="FINISHED" onclick="ejecutarFiltros()">
+              <label class="form-check-label" for="radioTerminado">Terminado</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="resultado" id="radioPendiente" value="SCHEDULED" onclick="ejecutarFiltros()">
+              <label class="form-check-label" for="radioPendiente">Pendiente</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="resultado" id="radioJugando" value="jugando" onclick="ejecutarFiltros()">
+              <label class="form-check-label" for="radioJugando">Jugando</label>
+            </div>
         </div>
- 
+ <!-- 
         <div class="ml-10">
           <p>Estado: </p>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="estado" id="radioTodosEstado" checked value="Todos" onclick="ejecutarFiltros()">
             <label class="form-check-label" for="radioTodosEstado">Todos</label>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="estado" id="radioTerminado" value="FINISHED" onclick="ejecutarFiltros()">
-            <label class="form-check-label" for="radioTerminado">Terminado</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="estado" id="radioPendiente" value="SCHEDULED" onclick="ejecutarFiltros()">
-            <label class="form-check-label" for="radioPendiente">Pendiente</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="estado" id="radioJuango" value="ESTADO_PENDIENTE" onclick="ejecutarFiltros()">
-            <label class="form-check-label" for="radioJuango">Jugando</label>
-          </div>
         </div>
+ -->
+
         <div class="ml-10">
-          <p>Estado: </p>
+          <p>Ubicación: </p>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="posicion" id="radioTodosPosicion" checked value="Todos" onclick="ejecutarFiltros()">
             <label class="form-check-label" for="radioTodosPosicion">Todos</label>
