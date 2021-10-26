@@ -96,6 +96,9 @@ function keyupInput2(){
   //console.log(input2.value)
   //&& crear función
   let errorEquipo = {id: 0, nombre: 'inserta un nombre válido', err:true}
+ 
+
+/* 
   let idEquipos = [
     {id: 0, nombre: 'Todos los Equipos'},
     {id: 95, nombre: 'Valencia CF'},
@@ -119,11 +122,15 @@ function keyupInput2(){
     {id: 285, nombre: 'Elche CF'},
     {id: 77, nombre: 'Athletic Club'}
   ];
+  */
+//&&
+
+
+   // let idEquipos lo genero automáticamente en la función de autollamada()() a àrtir de contarGoles
   let buscandoId = idEquipos.filter(function(equipo){
     return eliminarMayusculasEspacioTilde (equipo.nombre).includes(eliminarMayusculasEspacioTilde (input2.value));
   });
   inyectandoCajaEquipos2(buscandoId)
-  //cajaEquiposVista2.innerText="Ups, con éste nombre no encontré nada"
   return buscandoId[0]?buscandoId[0]:errorEquipo
 }
 function eliminarMayusculasEspacioTilde (nombre){
@@ -141,10 +148,7 @@ function inyectandoCajaEquipos2(buscandoId){
   })
 }
 
-// el término busqueda ha de llamarse id
 function filtrarEquipos(id){
-  //console.log(arrayPartidos);
-  //console.log("id: "+id);
   if (id === 0){
     arrayFiltro = arrayPartidos
     return
@@ -160,8 +164,6 @@ function filtrarResultado({ id, resultadoFiltro }){
       console.log("antes de ejecutar el filtro");
       console.log("resultadoFiltro: "+ resultadoFiltro);
       arrayFiltro = arrayFiltro.filter((partido) => {
-        //console.log("partido: " + JSON.stringify(partido));
-        //if(id === partido.resultado) 
         return id == partido.resultado })
         //return partido })
       break;
@@ -192,20 +194,12 @@ function filtrarResultado({ id, resultadoFiltro }){
   }
 }
 
-
 /* ésta función me gustó, y en lugar de romperla, quería transformar filtrar resultado en ésta */
-/* 
-function filtrarEstado({estado}){
-  arrayFiltro = arrayFiltro.filter(function(partido){    
-      return estado === partido.estado    
-  })
-}
- */
-
-
-
-
-
+/*function filtrarEstado({estado}){
+    arrayFiltro = arrayFiltro.filter(function(partido){    
+        return estado === partido.estado    
+    })
+ } */
 
 function filtrarPosicion({ id, posicion }){
   switch (posicion) {

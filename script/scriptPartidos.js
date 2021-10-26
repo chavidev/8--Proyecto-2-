@@ -1,7 +1,11 @@
+let idEquipos = [];
 (async function(){
   let data = await getData({endPoint:"matches"})
-  //¿formas de evitar el object object sin streingify?
-  //console.log("data: "+data); 
+
+  idEquipos = contarGoles (data.matches)
+  idEquipos.unshift({id: 0, nombre: "Todos los Equipos"})
+  //console.log("idEquipos: " +JSON.stringify(idEquipos) )
+
   crearFiltrosPartidos(data); //lo tengo en filtros
   verPartidos(data.matches);
 })()

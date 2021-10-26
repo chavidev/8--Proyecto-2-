@@ -21,6 +21,7 @@ contargoles(data.maches)=>
       crearTablaGoleados (array)
 */
 
+// genera los idEquipos =[{id nombres},] del input
 function contarGoles (datos){ //datos = data.maches 
   let arrayGoles = []; 
   for(let i=0 ; i<datos.length ;i++){
@@ -50,7 +51,7 @@ function contarGoles (datos){ //datos = data.maches
       },arrayGoles);
     }    
   }
-  //console.log(arrayGoles)
+  //genera los idEquipos =[{id nombres},] del input
   return arrayGoles
 }
 function recorrerArrayGoles(Obj,array){
