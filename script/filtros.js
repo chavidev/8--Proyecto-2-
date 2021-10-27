@@ -1,4 +1,4 @@
-//console.log("variablesFiltro:"+ JSON.stringify(variablesFiltro));
+
 //   ####   ¿Arquitectura?   ####
 
 // crearFiltroPartidos()
@@ -17,14 +17,7 @@
 let arrayPartidos = [];
 let arrayFiltro = [];
 let variablesFiltro = {};
-
-//si se está jugando cómo es y cuantos estados mas existen ¿aplazado? 
-//estado:
-//pendiente==SCHEDULED
-//terminado==FINISHED
-//jugando==????  &&
-
- // 
+ 
 function crearFiltrosPartidos(data){
   //console.log(data.matches);
   //console.log("test desde crearFiltrosPartidos");
@@ -91,41 +84,10 @@ function ejecutarFiltros(){
   errorInput.innerText = keyupInput2().err ? (`Ups no hay equipos que contengan: ${nombreError}`):""
 }
 
-//&& pendiente de extraer la info desde una función 
+// se activa en el momento de levantar una tecla en el input
 function keyupInput2(){
-  //console.log(input2.value)
-  //&& crear función
   let errorEquipo = {id: 0, nombre: 'inserta un nombre válido', err:true}
  
-
-/* 
-  let idEquipos = [
-    {id: 0, nombre: 'Todos los Equipos'},
-    {id: 95, nombre: 'Valencia CF'},
-    {id: 82, nombre: 'Getafe CF'},
-    {id: 264, nombre: 'Cádiz CF'},
-    {id: 88, nombre: 'Levante UD'},
-    {id: 89, nombre: 'RCD Mallorca'},
-    {id: 90, nombre: 'Real Betis Balompié'},
-    {id: 79, nombre: 'CA Osasuna'},
-    {id: 80, nombre: 'RCD Espanyol de Barcelona'},
-    {id: 263, nombre: 'Deportivo Alavés'},
-    {id: 86, nombre: 'Real Madrid CF'},
-    {id: 558, nombre: 'RC Celta de Vigo'},
-    {id: 78, nombre: 'Club Atlético de Madrid'},
-    {id: 81, nombre: 'FC Barcelona'},
-    {id: 92, nombre: 'Real Sociedad de Fútbol'},
-    {id: 559, nombre: 'Sevilla FC'},
-    {id: 87, nombre: 'Rayo Vallecano de Madrid'},
-    {id: 94, nombre: 'Villarreal CF'},
-    {id: 83, nombre: 'Granada CF'},
-    {id: 285, nombre: 'Elche CF'},
-    {id: 77, nombre: 'Athletic Club'}
-  ];
-  */
-//&&
-
-
    // let idEquipos lo genero automáticamente en la función de autollamada()() a àrtir de contarGoles
   let buscandoId = idEquipos.filter(function(equipo){
     return eliminarMayusculasEspacioTilde (equipo.nombre).includes(eliminarMayusculasEspacioTilde (input2.value));
@@ -153,7 +115,6 @@ function filtrarEquipos(id){
     arrayFiltro = arrayPartidos
     return
   }
-  //&& es probable que aquí tenga que hacer una cópia  con from
    arrayFiltro = arrayPartidos.filter(function(partido){
    return id === partido.idEquipoLocal || id === partido.idEquipoVisitante
  })
@@ -165,7 +126,6 @@ function filtrarResultado({ id, resultadoFiltro }){
       console.log("resultadoFiltro: "+ resultadoFiltro);
       arrayFiltro = arrayFiltro.filter((partido) => {
         return id == partido.resultado })
-        //return partido })
       break;
     case "perdidos":
       //&& si ganó el equipo contrario
@@ -193,13 +153,6 @@ function filtrarResultado({ id, resultadoFiltro }){
       break;
   }
 }
-
-/* ésta función me gustó, y en lugar de romperla, quería transformar filtrar resultado en ésta */
-/*function filtrarEstado({estado}){
-    arrayFiltro = arrayFiltro.filter(function(partido){    
-        return estado === partido.estado    
-    })
- } */
 
 function filtrarPosicion({ id, posicion }){
   switch (posicion) {

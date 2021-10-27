@@ -1,14 +1,3 @@
-/*
-{
-  id:
-  nombre:
-  totalGolesMarcados:
-  partidosJugados:
-  partidosFuera:
-  golesRecibidosFuera:
-  avg:
-} 
-*/
 
 /*         ##### Arquitectura #####
 contargoles(data.maches)=>
@@ -78,7 +67,6 @@ function calcularAvg (array){
   for (let i = 0 ; i<array.length; i++){
     array[i].avg = array[i].totalGolesMarcados / array[i].partidosJugados
   }
-  //console.log(arrayGoles)
 }
 function ordenarAvg (array){
   arrayAvg = Array.from(array)
@@ -110,7 +98,6 @@ function crearTablaAvg (array){
     let avgTd = document.createElement("td");
   
     equipoTd.innerText =`${array[i].nombre}`;
-    //logoTd.innerText =`${array[i].id}`;
     logoTd.append(imgTd);
     partidosTd.innerText =`${array[i].partidosJugados}`;
     golesTd.innerText =`${array[i].totalGolesMarcados}`;
@@ -137,8 +124,7 @@ function ordenarGolesRecibidosFuera (array){
 }
 function crearTablaGoleados (array) {
   let tablaGoleados = document.querySelector("#tabla_goleados"); //"tbody"
-  for(i=0;i<5;i++){  //no hay forma de romper el foreach, el return no hace caso y el break rebienta el código
-  //array.forEach((equipo,i) =>{ arrayGolesRecibidosFuera[i]  //&& romper con return o brake
+  for(i=0;i<5;i++){  
     let tr = document.createElement("tr");
     let equipoTd = document.createElement("td");
     let logoTd = document.createElement("td");
@@ -148,12 +134,10 @@ function crearTablaGoleados (array) {
     let goleadoTd = document.createElement("td");
     let partidosJugadosTd = document.createElement("td");
     equipoTd.innerText = `${array[i].nombre}`;
-    //logoTd.innerText = `${array[i].id}`;
     logoTd.append(imgTd);
     goleadoTd.innerText = `${array[i].golesRecibidosFuera}`;
-    partidosJugadosTd.innerText = `${array[i].partidosFuera}`; //supongo que son SOLO los partidos jugados fuera
+    partidosJugadosTd.innerText = `${array[i].partidosFuera}`; 
     tr.append(equipoTd , logoTd, partidosJugadosTd , goleadoTd);
-    tablaGoleados.append(tr);
-    //console.log(equipo);    
+    tablaGoleados.append(tr); 
   }//)
 }

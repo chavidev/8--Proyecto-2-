@@ -3,8 +3,6 @@
   verClasificacion(data)  // ésta función se la quiero pasar como parámetro a getData , pero es ¿imposible?
 })()
 
-
-
 function verClasificacion(dataClasificacion){
   for(let i = 0 ;i<dataClasificacion.standings[0].table.length;i++){
     let arrayTd , posicion , teamName , teamId , teamLogo , partidosJugados , victorias , empates , derrotas , golesFaborables , golesContra , golesDiferencia , puntos;

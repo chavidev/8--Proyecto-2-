@@ -4,16 +4,12 @@ let idEquipos = [];
 
   idEquipos = contarGoles (data.matches)
   idEquipos.unshift({id: 0, nombre: "Todos los Equipos"})
-  //console.log("idEquipos: " +JSON.stringify(idEquipos) )
 
   crearFiltrosPartidos(data); //lo tengo en filtros
   verPartidos(data.matches);
 })()
 
-// si el primero es undefined, coge el segundo
-// && no consigo hacerlo funcionar para la llamada desde el filtro
-function verPartidos (array){  
-  //console.log("data.matches"+JSON.stringify(data.matches))
+function verPartidos (array){
   let partido , local, resultado, visitante, jornada , equipoLocal , idEquipoLocal , equipoVisitante , idEquipoVisitante;
   let partidos = document.querySelector("tbody");
 
@@ -34,16 +30,13 @@ function verPartidos (array){
 
   if (array.length === 0){
     partidos.innerText = `El ${variablesFiltro.nombre} no tiene partidos ${variablesFiltro.resultadoFiltro !=="todos"?variablesFiltro.resultadoFiltro:""} ${variablesFiltro.posicion !=="Todos" ?  " en " : ""}${variablesFiltro.posicion !=="Todos" ?  variablesFiltro.posicion : ""}`;
-    //quiero unificar las líneas 18 y 19
+    //quiero unificar " en " y ${}
     console.log("entró en el if de no hay partidos");
-    //console.log("no hay partidos => variablesFiltro= "+JSON.stringify(variablesFiltro));
     return    
   }
   console.log("¿Qué hay qeu modificar? => variablesFiltro= "+JSON.stringify(variablesFiltro));
   partidos.innerText = "";
   for (i=0 ; i<array.length ; i++ ){
-    //console.log(array[i].awayTeam.name)
-    //&& dejalo como está
     jornada = !array[i].matchday  ? array[i].jornada : array[i].matchday;
     equipoLocal = !array[i].homeTeam  ? array[i].equipoLocal : array[i].homeTeam.name;
     idEquipoLocal =  !array[i].homeTeam  ? array[i].idEquipoLocal : array[i].homeTeam.id;
@@ -61,7 +54,6 @@ function verPartidos (array){
 
     local.innerText = equipoLocal;
     local.setAttribute("class","text-end");
-    /* resultado.innerText = `${golesLocal} - ${golesVisitante}`;  */
     resultado.innerText = ((golesLocal||golesVisitante) == null)? "pendiente":`${golesLocal} - ${golesVisitante}`;
     resultado.setAttribute("class","text-center");
     visitante.innerText = equipoVisitante ;
@@ -83,19 +75,16 @@ function imgEquipo (imgTd , id) {
   imgTd.setAttribute("width","50px")
 }
  
-// start cabecera-sticky
+// ###  start cabecera-sticky   ###
 // me hace fondo transparente y lo soluciono con una imágen de fondo
-//no consigo hacer el código mio, no me funciona eliminar la clase cuando lo tuneo
 function fijarCabezera ()  {
   let cabezeras = document.querySelectorAll('.cabezera')
-  cabezeras.forEach(cab => { cab.classList.add('cabezera-fixed') }) //modificación a mi estilo ¿perfect?
-  //cabezeras.forEach( function (cab) { cab.setAttribute('class','cabezera-fixed') })
+  cabezeras.forEach(cab => { cab.classList.add('cabezera-fixed') }) 
 }
  
 function desfijarCabezera () {
   let cabezeras = document.querySelectorAll('.cabezera')
   cabezeras.forEach(cab => { cab.classList.remove('cabezera-fixed') })
-  //cabezeras.forEach(function (cab) { cab.removeAttribute("class") })
 }
  
 window.addEventListener('scroll', function(e) {
@@ -107,4 +96,4 @@ window.addEventListener('scroll', function(e) {
     desfijarCabezera()
   }
 });
-// end cabecera
+// ###  End cabecera  ####
