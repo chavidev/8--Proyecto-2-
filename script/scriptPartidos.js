@@ -16,18 +16,30 @@ function verPartidos (array){
   //console.log("data.matches"+JSON.stringify(data.matches))
   let partido , local, resultado, visitante, jornada , equipoLocal , idEquipoLocal , equipoVisitante , idEquipoVisitante;
   let partidos = document.querySelector("tbody");
+
+  if(variablesFiltro.id === 0 && (variablesFiltro.resultadoFiltro === "ganados" || variablesFiltro.resultadoFiltro === "perdidos"  )){
+    partidos.innerText =`Para obtener los partidos ${variablesFiltro.resultadoFiltro} es necesario que elijas un equipo`
+    return
+  }
+  
+  if (array.length === 0 && variablesFiltro.resultadoFiltro === "jugando"){
+    partidos.innerText = "En éste momento no se está jugando ningún partido"
+    return
+  }
+
+  if(variablesFiltro.id === 0 && (variablesFiltro.posicion === "casa" || variablesFiltro.posicion === "visitante")){
+    partidos.innerText = `Para obtener los partidos en casa o como visitante, es necesario introducir un equipo`
+    return
+  }
+
   if (array.length === 0){
-    partidos.innerText = `El ${variablesFiltro.nombre} no tiene partidos
-    ${variablesFiltro.resultadoFiltro !=="todos"?variablesFiltro.resultadoFiltro:""}
-    ${variablesFiltro.posicion !=="Todos" ?  " en " : ""}  
-    ${variablesFiltro.posicion !=="Todos" ?  variablesFiltro.posicion : ""}
-    `;
+    partidos.innerText = `El ${variablesFiltro.nombre} no tiene partidos ${variablesFiltro.resultadoFiltro !=="todos"?variablesFiltro.resultadoFiltro:""} ${variablesFiltro.posicion !=="Todos" ?  " en " : ""}${variablesFiltro.posicion !=="Todos" ?  variablesFiltro.posicion : ""}`;
     //quiero unificar las líneas 18 y 19
     console.log("entró en el if de no hay partidos");
-    //variablesFiltro: {"id":82,"resultadoFiltro":"ganados","posicion":"Todos","estado":"Todos","nombre":"Getafe CF","nombreError":"Getafe CF"}
-    console.log("no hay partidos => variablesFiltro= "+JSON.stringify(variablesFiltro));
+    //console.log("no hay partidos => variablesFiltro= "+JSON.stringify(variablesFiltro));
     return    
   }
+  console.log("¿Qué hay qeu modificar? => variablesFiltro= "+JSON.stringify(variablesFiltro));
   partidos.innerText = "";
   for (i=0 ; i<array.length ; i++ ){
     //console.log(array[i].awayTeam.name)
