@@ -8,9 +8,9 @@ async function getData(Obj) {
   try {
     let cargando_spinner = document.querySelector("#cargando");
     cargando_spinner.innerHTML = spinner;
-    const res = await fetch(`${API}/${Obj.endPoint}?=${API_KEY}`, {
+    const res = await fetch(`${API}/${Obj.endPoint}?=${API_KEY}`, { //&&eliminar API_KEY
         method: 'GET',
-        headers: new Headers({'X-Auth-Token': API_KEY }),
+        headers: new Headers({'X-Auth-Token': API_KEY }), //&& COLOCAR OBJETO AQUÍ
     });
     const data = await res.json()
     cargando_spinner.innerHTML = ''

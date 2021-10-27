@@ -11,7 +11,7 @@
 //      ->filtrosEquipos
 //      ->filtroResultados
 //      ->filtrarPosición
-//      ->filtrarEstado
+//      ->filtrarEstado ELIMINADO
 //      => verPartidos
 
 let arrayPartidos = [];
