@@ -29,13 +29,10 @@
       </div>
     </div>
    
-    <div class="d-flex justify-content-end">
-        <div class="mx-5 px-5">
+    <div class="d-flex align-items-end justify-content-end">
+        <div class="ms-5 ps-5">
             <p>Resultado: </p>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="resultado" id="radioTodos" checked value="todos" onclick="ejecutarFiltros()">
-              <label class="form-check-label" for="radioTodos">Todos</label>
-            </div>
+            
             <div class="form-check">
               <input class="form-check-input" type="radio" name="resultado" id="radioGanados" value="ganados" onclick="ejecutarFiltros()">
               <label class="form-check-label" for="radioGanados">Ganados</label>
@@ -48,7 +45,12 @@
               <input class="form-check-input" type="radio" name="resultado" id="radioPerdido" value="perdidos" onclick="ejecutarFiltros()">
               <label class="form-check-label" for="radioPerdido">Perdidos</label>
             </div>
-            
+        </div>
+        <div class="me-5 px-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="resultado" id="radioTodos" checked value="todos" onclick="ejecutarFiltros()">
+              <label class="form-check-label" for="radioTodos">Todos</label>
+            </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="resultado" id="radioTerminado" value="FINISHED" onclick="ejecutarFiltros()">
               <label class="form-check-label" for="radioTerminado">Terminado</label>
@@ -63,7 +65,7 @@
             </div>
         </div>
 
-        <div class="ml-10">
+        <div class="ms-5 ml-10">
           <p>Ubicación: </p>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="posicion" id="radioTodosPosicion" checked value="Todos" onclick="ejecutarFiltros()">
