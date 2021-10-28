@@ -77,3 +77,6 @@ https://css-tricks.com/position-sticky-and-table-headers/
 
 modelo wapo de menús
 https://www.youtube.com/watch?v=TSApIGTyzos&list=PLNAhb_3cvPKutAVEngn4nmXzgead9OKOm&index=6
+
+
+vv
