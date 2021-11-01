@@ -9,3 +9,6 @@ td, th, h2 {
   text-align: center;
   _border: 3px solid rgb(55, 0, 255);
 }
+td {
+  vertical-align: middle;
+}
