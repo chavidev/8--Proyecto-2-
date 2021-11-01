@@ -53,11 +53,11 @@ function verPartidos (array){
     imgVisitante = document.createElement("td");
 
     local.innerText = equipoLocal;
-    local.setAttribute("class","text-end");
+    local.setAttribute("class","equipo text-end");
     resultado.innerText = ((golesLocal||golesVisitante) == null)? "pendiente":`${golesLocal} - ${golesVisitante}`;
-    resultado.setAttribute("class","text-center");
+    resultado.setAttribute("class","goles text-center");
     visitante.innerText = equipoVisitante ;
-    visitante.setAttribute("class","text-start");
+    visitante.setAttribute("class","equipo text-start");
 
     imgEquipo(imgLocal, idEquipoLocal);
     imgEquipo(imgVisitante, idEquipoVisitante);
@@ -72,7 +72,8 @@ function imgEquipo (imgTd , id) {
   imgLogo.setAttribute("src",`https://crests.football-data.org/${id}.svg`);
   imgLogo.setAttribute("width","50px");
   imgTd.append(imgLogo);
-  imgTd.setAttribute("width","50px")
+  /* imgTd.setAttribute("width","10px"); */
+  imgTd.setAttribute("class","imgTd");
 }
  
 // ###  start cabecera-sticky   ###
