@@ -18,17 +18,21 @@
     </nav>
   </header>
   <main class="mt-5 pt-5">
-    <input id="inputEquipos2" placeholder="escribe aquí lo que quieras" onkeyup="keyupInput2()"> <!-- _onkeyup="keyupInput2()"" -->  
-    <button onclick="ejecutarFiltros()">Buscar</button>    
-    <div id="cajaEquiposVista2"></div>
-    
-    <div class="d-flex">
-        <div class="mr-10">
+    <div class="row g-3">
+      <div class="col-auto">
+        <input class="form-control col-2" id="inputEquipos2" placeholder="Selecciona el equipo" onkeyup="keyupInput2()"> <!-- _onkeyup="keyupInput2()"" -->  
+        <div id="cajaEquiposVista2" class="px-5 py-1 bg-dark text-white rounded-3"></div>
+        <div id="errorInput" class="position-fixed  text-danger rounded-3"></div>
+      </div>
+      <div class="col-auto">
+        <button onclick="ejecutarFiltros()" class="btn btn-primary">Buscar</button>    
+      </div>
+    </div>
+   
+    <div class="d-flex align-items-end justify-content-end">
+        <div class="ms-5 ps-5">
             <p>Resultado: </p>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="resultado" id="radioTodos" checked value="todos" onclick="ejecutarFiltros()">
-              <label class="form-check-label" for="radioTodos">Todos</label>
-            </div>
+            
             <div class="form-check">
               <input class="form-check-input" type="radio" name="resultado" id="radioGanados" value="ganados" onclick="ejecutarFiltros()">
               <label class="form-check-label" for="radioGanados">Ganados</label>
@@ -42,28 +46,27 @@
               <label class="form-check-label" for="radioPerdido">Perdidos</label>
             </div>
         </div>
- 
-        <div class="ml-10">
-          <p>Estado: </p>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="estado" id="radioTodosEstado" checked value="Todos" onclick="ejecutarFiltros()">
-            <label class="form-check-label" for="radioTodosEstado">Todos</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="estado" id="radioTerminado" value="FINISHED" onclick="ejecutarFiltros()">
-            <label class="form-check-label" for="radioTerminado">Terminado</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="estado" id="radioPendiente" value="SCHEDULED" onclick="ejecutarFiltros()">
-            <label class="form-check-label" for="radioPendiente">Pendiente</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="estado" id="radioJuango" value="ESTADO_PENDIENTE" onclick="ejecutarFiltros()">
-            <label class="form-check-label" for="radioJuango">Jugando</label>
-          </div>
+        <div class="me-5 px-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="resultado" id="radioTodos" checked value="todos" onclick="ejecutarFiltros()">
+              <label class="form-check-label" for="radioTodos">Todos</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="resultado" id="radioTerminado" value="FINISHED" onclick="ejecutarFiltros()">
+              <label class="form-check-label" for="radioTerminado">Terminado</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="resultado" id="radioPendiente" value="SCHEDULED" onclick="ejecutarFiltros()">
+              <label class="form-check-label" for="radioPendiente">Pendiente</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="resultado" id="radioJugando" value="jugando" onclick="ejecutarFiltros()">
+              <label class="form-check-label" for="radioJugando">Jugando  </label>
+            </div>
         </div>
-        <div class="ml-10">
-          <p>Estado: </p>
+
+        <div class="ms-5 ml-10">
+          <p>Ubicación: </p>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="posicion" id="radioTodosPosicion" checked value="Todos" onclick="ejecutarFiltros()">
             <label class="form-check-label" for="radioTodosPosicion">Todos</label>
@@ -81,9 +84,9 @@
     <table class="table">
       <thead class="thead-dark">
           <tr>
-            <th class="text-end cabezera" colspan="2">Local</th>
-            <th class="text-center cabezera">Goles</th>
-            <th class="text-start cabezera" colspan="2">Visitante</th>
+            <th class="equipos text-end cabezera" colspan="2">Local</th>
+            <th class="goles text-center cabezera">Goles</th>
+            <th class="equipos text-start cabezera" colspan="2">Visitante</th>
           </tr>
       </thead>    
       <tbody id="partidos">
@@ -104,11 +107,15 @@
           <td colspan="3" >if null => pendiente</td>
         </tr>
       </tfoot> -->
-    </table>
-  </main>
- 
-  <script src="./dataPartidos.js"></script>
- 
+    </table> 
+    <div id="cargando" class="d-flex justify-content-center mt-10" >
+    </div>
+  </main> 
+
+  <script src="./script/api.js"></script>
+  <script src="./script/spinner.js"></script>
+
+  <script src="./script/estadisticas.js"></script><!-- reutilizo la función contar goles para obtener el nombre de los equipos del input -->
   <script src="./script/filtros.js"></script>
   <script src="./script/scriptPartidos.js"></script>
 </body>

@@ -19,3 +19,21 @@
 .thead-dark {
 color: #292b2c;
 }
+td {
+  vertical-align: middle;
+}
+
+/* solución para que la tabla tenga un ancho fijo de columnas */
+.goles {
+  width: 5%;
+}
+.equipos  {
+  width: 22%;
+}
+.equipo  {
+  width: 20%;
+}
+.imgTd {
+  width: 10px !important;
+}
+/* fin solución */

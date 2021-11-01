@@ -1,5 +1,5 @@
-contarGoles (data.matches);
-/* 
+
+/*         ##### Arquitectura #####
 contargoles(data.maches)=>
     recorrerArrayGoles(Obj, arrayGoles)    
     calcularAvg (arrayGoles)  
@@ -9,17 +9,8 @@ contargoles(data.maches)=>
     ordenarGolesRecibidosFuera (arrayGoles)=>
       crearTablaGoleados (array)
 */
-/*
-{
-  id:
-  nombre:
-  totalGolesMarcados:
-  partidosJugados:
-  partidosFuera:
-  golesRecibidosFuera:
-  avg:
-} 
-*/
+
+// genera los idEquipos =[{id nombres},] del input
 function contarGoles (datos){ //datos = data.maches 
   let arrayGoles = []; 
   for(let i=0 ; i<datos.length ;i++){
@@ -49,12 +40,8 @@ function contarGoles (datos){ //datos = data.maches
       },arrayGoles);
     }    
   }
-  calcularAvg (arrayGoles);  
-  ordenarAvg(arrayGoles);
-  ordenarGolesRecibidosFuera (arrayGoles);
-
-  crearFiltrosEstadisticas(arrayGoles)
-  //console.log(arrayGoles);
+  //genera los idEquipos =[{id nombres},] del input
+  return arrayGoles
 }
 function recorrerArrayGoles(Obj,array){
   for (let j = 0; j < array.length ; j++){
@@ -80,7 +67,6 @@ function calcularAvg (array){
   for (let i = 0 ; i<array.length; i++){
     array[i].avg = array[i].totalGolesMarcados / array[i].partidosJugados
   }
-  //console.log(arrayGoles)
 }
 function ordenarAvg (array){
   arrayAvg = Array.from(array)
@@ -94,7 +80,8 @@ function ordenarAvg (array){
     return 0;
   });
   //console.log(arrayAvg)
-  crearTablaAvg(arrayAvg);
+  //crearTablaAvg(arrayAvg);
+  return arrayAvg
   
 }
 function crearTablaAvg (array){
@@ -111,7 +98,6 @@ function crearTablaAvg (array){
     let avgTd = document.createElement("td");
   
     equipoTd.innerText =`${array[i].nombre}`;
-    //logoTd.innerText =`${array[i].id}`;
     logoTd.append(imgTd);
     partidosTd.innerText =`${array[i].partidosJugados}`;
     golesTd.innerText =`${array[i].totalGolesMarcados}`;
@@ -120,6 +106,7 @@ function crearTablaAvg (array){
     tablaAvg.append(trAvg);
   }
 }
+
 function ordenarGolesRecibidosFuera (array){
   let arrayGolesRecibidosFuera = Array.from(array)
   arrayGolesRecibidosFuera.sort(function (a, b) {
@@ -131,13 +118,13 @@ function ordenarGolesRecibidosFuera (array){
     }
     return 0;
   });
-  crearTablaGoleados (arrayGolesRecibidosFuera);
+  //crearTablaGoleados (arrayGolesRecibidosFuera);
   //console.log(arrayGolesRecibidosFuera);
+  return arrayGolesRecibidosFuera
 }
-function crearTablaGoleados (array) { 
+function crearTablaGoleados (array) {
   let tablaGoleados = document.querySelector("#tabla_goleados"); //"tbody"
-  for(i=0;i<5;i++){  //no hay forma de romper el foreach, el return no hace caso y el break rebienta el código
-  //array.forEach((equipo,i) =>{ arrayGolesRecibidosFuera[i]  //&& romper con return o brake
+  for(i=0;i<5;i++){  
     let tr = document.createElement("tr");
     let equipoTd = document.createElement("td");
     let logoTd = document.createElement("td");
@@ -147,12 +134,10 @@ function crearTablaGoleados (array) {
     let goleadoTd = document.createElement("td");
     let partidosJugadosTd = document.createElement("td");
     equipoTd.innerText = `${array[i].nombre}`;
-    //logoTd.innerText = `${array[i].id}`;
     logoTd.append(imgTd);
     goleadoTd.innerText = `${array[i].golesRecibidosFuera}`;
-    partidosJugadosTd.innerText = `${array[i].partidosFuera}`; //supongo que son SOLO los partidos jugados fuera
+    partidosJugadosTd.innerText = `${array[i].partidosFuera}`; 
     tr.append(equipoTd , logoTd, partidosJugadosTd , goleadoTd);
-    tablaGoleados.append(tr);
-    //console.log(equipo);    
+    tablaGoleados.append(tr); 
   }//)
 }
